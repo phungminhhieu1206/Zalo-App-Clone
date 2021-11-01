@@ -1,0 +1,93 @@
+import * as React from 'react';
+import {
+    View,
+    Text,
+    Pressable,
+    StyleSheet,
+    Image
+} from 'react-native';
+
+export default function ChatRoomItem({ chatRoom }: { chatRoom: any }) {
+
+    const user = chatRoom.users[1];
+
+    const onPressHandle = () => {
+        console.warn(chatRoom.id);
+    }
+
+    return (
+        <Pressable onPress={onPressHandle} style={styles.container}>
+            <View style={styles.avatar}>
+                <Image
+                    source={{ uri: user.imageUri }}
+                    style={styles.image}
+                />
+                {chatRoom.newMessages ? <View style={styles.badgeContainer}>
+                    <Text style={styles.badgeText}>{chatRoom.newMessages}</Text>
+                </View> : null}
+            </View>
+            <View style={styles.rightContainer}>
+                <View style={styles.row}>
+                    <Text numberOfLines={1} style={styles.name}>{user.name}</Text>
+                    <Text numberOfLines={1} style={styles.time}>{chatRoom.lastMessage.createdAt}</Text>
+                </View>
+                <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastMessage.content}</Text>
+            </View>
+        </Pressable >
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        padding: 10,
+        width: '100%',
+    },
+    avatar: {
+    },
+    image: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        marginRight: 10
+    },
+    rightContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    badgeContainer: {
+        backgroundColor: '#3777f0',
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        left: 45
+    },
+    badgeText: {
+        color: 'white',
+        fontSize: 12,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 3,
+    },
+    name: {
+        flex: 3,
+        textAlign: 'left',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    time: {
+        flex: 1,
+        textAlign: 'right',
+        color: 'grey',
+        justifyContent: 'center'
+    },
+    message: {
+    }
+});

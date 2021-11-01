@@ -4,10 +4,10 @@ import {
   StyleSheet,
   FlatList,
 } from 'react-native';
-import ChatRoomItem from '../components/ChatRoomItem';
+import ChatRoomItem from '../components/Chat/ChatRoomItem';
 import ChatRoomData from '../assets/fake-data/ChatRooms';
 
-export default function HomeScreen() {
+export default function ChatHomeScreen() {
   return (
     <View style={styles.home_chat}>
       <FlatList
@@ -22,6 +22,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   home_chat: {
     backgroundColor: 'white',
-    flex: 1
+    flex: 1,
   }
 });

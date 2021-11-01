@@ -6,13 +6,17 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core'
 
 export default function ChatRoomItem({ chatRoom }: { chatRoom: any }) {
 
     const user = chatRoom.users[1];
 
+    const navigation = useNavigation();
+
     const onPressHandle = () => {
-        console.warn(chatRoom.id);
+        navigation.navigate('ChatRoom');
+        // console.warn(chatRoom.id);
     }
 
     return (

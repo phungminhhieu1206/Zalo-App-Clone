@@ -7,7 +7,7 @@ import {
 
 const myID = 'u1';
 
-export default function Message({ messages }: { messages: any }) {
+export default function Message({ messages }) {
 
     const isMe = messages.user.id === myID;
 

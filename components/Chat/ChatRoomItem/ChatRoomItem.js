@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
 
-export default function ChatRoomItem({ chatRoom }: { chatRoom: any }) {
+export default function ChatRoomItem({ chatRoom }) {
 
     const user = chatRoom.users[1];
 
@@ -16,7 +16,7 @@ export default function ChatRoomItem({ chatRoom }: { chatRoom: any }) {
 
     const onPressHandle = () => {
         // console.warn('pressed on: ', user.name);
-
+        
         navigation.navigate('ChatRoom', { id: chatRoom.id });
         // console.warn(chatRoom.id);
     }

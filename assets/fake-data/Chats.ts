@@ -1,4 +1,4 @@
-export default {
+export default [{
 	id: '1',
 	users: [{
 		id: 'u1',
@@ -66,5 +66,73 @@ export default {
 			name: 'Elon Musk',
 		},
 	}]
-}
+}, {
+	id: '2',
+	users: [{
+		id: 'u1',
+		name: 'Vadim',
+		imageUri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg',
+	}, {
+		id: 'u3',
+		name: 'Jeff 🎃👻✨',
+		imageUri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
+	}],
+	messages: [{
+		id: 'm1',
+		content: 'Who sus? 🎃👻✨🎃👻✨🎃👻✨',
+		createdAt: '2020-10-10T12:48:00.000Z',
+		user: {
+			id: 'u1',
+			name: 'Vadim',
+		},
+	}, {
+		id: 'm2',
+		content: 'Hola hola coca cola? 🎃👻✨🎃👻✨🎃👻✨',
+		createdAt: '2020-10-03T14:49:00.000Z',
+		user: {
+			id: 'u3',
+			name: 'Jeff 🎃👻✨',
+		},
+	}, {
+		id: 'm3',
+		content: 'What about you?',
+		createdAt: '2020-10-03T14:49:40.000Z',
+		user: {
+			id: 'u3',
+			name: 'Jeff 🎃👻✨',
+		},
+	}, {
+		id: 'm4',
+		content: 'Good as well, preparing for the stream now.🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵',
+		createdAt: '2020-10-03T14:50:00.000Z',
+		user: {
+			id: 'u1',
+			name: 'Vadim',
+		},
+	}, {
+		id: 'm5',
+		content: 'Destroy the like button! 😍😍🥵🔥😂😂',
+		createdAt: '2020-10-03T14:51:00.000Z',
+		user: {
+			id: 'u1',
+			name: 'Vadim',
+		},
+	}, {
+		id: 'm6',
+		content: 'going to the Moooooon',
+		createdAt: '2020-10-03T14:49:00.000Z',
+		user: {
+			id: 'u3',
+			name: 'Jeff 🎃👻✨',
+		},
+	}, {
+		id: 'm7',
+		content: 'Why did you reject our offer? ❤️😍❤️😍❤️😍',
+		createdAt: '2020-10-03T14:53:00.000Z',
+		user: {
+			id: 'u3',
+			name: 'Jeff 🎃👻✨',
+		},
+	}]
+}]
 

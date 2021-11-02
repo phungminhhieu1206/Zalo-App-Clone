@@ -5,7 +5,7 @@ import AuthNavigation from './AuthNavigation';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import { SignedInStack } from './navigation';
+import { SignedInStack, SignedOutStack } from './navigation';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,6 +18,7 @@ export default function App() {
       <SafeAreaProvider>
         {/* <AuthNavigation colorScheme={colorScheme} /> */}
         <SignedInStack colorScheme={colorScheme} />
+        {/* <SignedOutStack/> */}
         <StatusBar />
       </SafeAreaProvider>
     );

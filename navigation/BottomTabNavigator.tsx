@@ -12,6 +12,10 @@ import ChatHomeScreen from '../screens/ChatHomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MyScreen from '../screens/MyScreen';
 import ContactScreen from '../screens/ContactScreen';
+import HomeHeader from './HeaderNavigator/HomeHeader';
+import ChatHomeHeader from './HeaderNavigator/ChatHomeHeader';
+import ContactHeader from './HeaderNavigator/ContactHeader';
+import MeHeader from './HeaderNavigator/MeHeader';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -58,11 +62,11 @@ const TabOneStack = createStackNavigator<RootTabParamList>();
 
 function TabOneNavigator() {
   return (
-    <TabOneStack.Navigator screenOptions={{ headerShown: false }}>
+    <TabOneStack.Navigator screenOptions={{ headerShown: true }}>
       <TabOneStack.Screen
         name="TabOneScreen"
         component={ChatHomeScreen}
-        options={{ headerTitle: 'Home' }}
+        options={{ headerTitle: ChatHomeHeader }}
       />
     </TabOneStack.Navigator>
   );
@@ -72,11 +76,11 @@ const TabTwoStack = createStackNavigator<RootTabParamList>();
 
 function TabTwoNavigator() {
   return (
-    <TabTwoStack.Navigator screenOptions={{ headerShown: false }}>
+    <TabTwoStack.Navigator screenOptions={{ headerShown: true }}>
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={ContactScreen}
-        options={{ headerTitle: 'ContactScreen' }}
+        options={{ headerTitle: ContactHeader }}
       />
     </TabTwoStack.Navigator>
   );
@@ -86,11 +90,11 @@ const TabThreeStack = createStackNavigator<RootTabParamList>();
 
 function TabThreeNavigator() {
   return (
-    <TabThreeStack.Navigator screenOptions={{ headerShown: false }}>
+    <TabThreeStack.Navigator screenOptions={{ headerShown: true }}>
       <TabThreeStack.Screen
         name="TabThreeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
+        options={{ headerTitle: HomeHeader }}
       />
     </TabThreeStack.Navigator>
   );
@@ -100,11 +104,11 @@ const TabFourStack = createStackNavigator<RootTabParamList>();
 
 function TabFourNavigator() {
   return (
-    <TabFourStack.Navigator screenOptions={{ headerShown: false }}>
+    <TabFourStack.Navigator screenOptions={{ headerShown: true }}>
       <TabFourStack.Screen
         name="TabFourScreen"
         component={MyScreen}
-        options={{ headerTitle: 'MyScreen' }}
+        options={{ headerTitle: MeHeader }}
       />
     </TabFourStack.Navigator>
   );

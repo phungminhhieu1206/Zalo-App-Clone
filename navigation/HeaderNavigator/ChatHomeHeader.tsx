@@ -5,11 +5,14 @@ import {
     Text,
     useWindowDimensions,
     Pressable,
+    TouchableOpacity
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const ChatHomeHeader = () => {
     const { width } = useWindowDimensions();
+    const navigation = useNavigation();
 
     return (
         <View style={{
@@ -35,18 +38,20 @@ const ChatHomeHeader = () => {
                 marginLeft: 25,
                 fontWeight: 'bold',
                 fontSize: 20
-            }}>My Zalo</Text>
-            <Pressable onPress={() => console.warn('clicked camera')}>
-                <Feather
-                    name="camera"
-                    size={24}
-                    color="black"
-                    style={{
-                        marginHorizontal: 10
-                    }}
-                />
-            </Pressable>
-            <Pressable onPress={() => console.warn('clicked pencil')}>
+            }}>Chat Room</Text>
+            <TouchableOpacity>
+                <Pressable onPress={() => console.warn('clicked camera of chat room')}>
+                    <Feather
+                        name="camera"
+                        size={24}
+                        color="black"
+                        style={{
+                            marginHorizontal: 10
+                        }}
+                    />
+                </Pressable>
+            </TouchableOpacity>
+            <Pressable onPress={() => console.warn('clicked pencil of chat room')}>
                 <Feather
                     name="edit-2"
                     size={24}

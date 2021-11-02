@@ -9,7 +9,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const HomeHeader = () => {
+const ContactHeader = () => {
     const { width } = useWindowDimensions();
     const navigation = useNavigation();
 
@@ -37,8 +37,8 @@ const HomeHeader = () => {
                 marginLeft: 25,
                 fontWeight: 'bold',
                 fontSize: 20
-            }}>Timeline</Text>
-            <Pressable onPress={() => console.warn('clicked camera of timeline')}>
+            }}>Contact</Text>
+            <Pressable onPress={() => console.warn('click camera of contact')}>
                 <Feather
                     name="camera"
                     size={24}
@@ -48,7 +48,7 @@ const HomeHeader = () => {
                     }}
                 />
             </Pressable>
-            <Pressable onPress={() => navigation.navigate("NewPost")}>
+            <Pressable onPress={() => console.warn('clicked pencil of contact')}>
                 <Feather
                     name="edit-2"
                     size={24}
@@ -63,4 +63,4 @@ const HomeHeader = () => {
     )
 }
 
-export default HomeHeader
+export default ContactHeader

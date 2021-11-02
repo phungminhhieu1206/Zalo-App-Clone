@@ -7,6 +7,7 @@ import {
     Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
+import moment from 'moment'
 
 export default function ChatRoomItem({ chatRoom }) {
 
@@ -20,6 +21,8 @@ export default function ChatRoomItem({ chatRoom }) {
         navigation.navigate('ChatRoom', { id: chatRoom.id });
         // console.warn(chatRoom.id);
     }
+
+    const time = moment(chatRoom.lastMessage?.createdAt).from(moment());
 
     return (
         <Pressable onPress={onPressHandle} style={styles.container}>
@@ -35,7 +38,7 @@ export default function ChatRoomItem({ chatRoom }) {
             <View style={styles.rightContainer}>
                 <View style={styles.row}>
                     <Text numberOfLines={1} style={styles.name}>{user.name}</Text>
-                    <Text numberOfLines={1} style={styles.time}>{chatRoom.lastMessage.createdAt}</Text>
+                    <Text numberOfLines={1} style={styles.time}>{time}</Text>
                 </View>
                 <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastMessage.content}</Text>
             </View>
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
         marginBottom: 3,
     },
     name: {
-        flex: 3,
+        flex: 2,
         textAlign: 'left',
         fontSize: 18,
         fontWeight: 'bold',
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'right',
         color: 'grey',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     message: {
     }

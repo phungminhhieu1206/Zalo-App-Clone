@@ -21,6 +21,8 @@ export type RootStackParamList = {
   ChatRoom: undefined;
   Home: undefined;
   NewPost: undefined;
+  LoginScreen: undefined;
+  SignupScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

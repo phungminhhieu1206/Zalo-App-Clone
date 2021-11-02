@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Alert,
 } from 'react-native'
-import auth from '@react-native-firebase/auth'
+// import auth from '@react-native-firebase/auth'
 
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -24,9 +24,9 @@ const LoginForm = () => {
         password: Yup.string().required().min(6, 'Your password has to have at least 8 characters'),
     })
 
-    const onLogin = async (email, password) => {
+    const onLogin = (email, password) => {
         try {
-            await auth().signInWithEmailAndPassword(email, password)
+            // await auth().signInWithEmailAndPassword(email, password)
             console.log('Firebase login successful ', email, password)
         } catch (error) {
             Alert.alert(
@@ -74,7 +74,6 @@ const LoginForm = () => {
                                 autoCapitalize='none'
                                 keyboardType='email-address'
                                 textContentType='emailAddress'
-                                // autoFocus={true}
                                 onChangeText={handleChange('email')}
                                 onBlur={handleBlur('email')}
                                 value={values.email}

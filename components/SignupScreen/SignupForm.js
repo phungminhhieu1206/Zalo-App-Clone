@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Alert
 } from 'react-native'
-import auth from '@react-native-firebase/auth'
+// import auth from '@react-native-firebase/auth'
 
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -32,9 +32,9 @@ const SignupForm = () => {
     //     return data.results[0].picture.large
     // }
 
-    const onSignup = async (email, password) => {
+    const onSignup = (email, password) => {
         try {
-            const authUser = await auth().createUserWithEmailAndPassword(email, password)
+            // const authUser = await auth().createUserWithEmailAndPassword(email, password)
             console.log('Firebase user created successfully', email, password)
             // firestore.collection('users').add({
             //     owner_uid: authUser.user.uid,

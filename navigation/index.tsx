@@ -1,6 +1,6 @@
-import { 
-  NavigationContainer, 
-  DefaultTheme, 
+import {
+  NavigationContainer,
+  DefaultTheme,
   DarkTheme,
   useNavigation
 } from '@react-navigation/native';
@@ -20,8 +20,10 @@ import HomeScreen from '../screens/HomeScreen';
 import NewPostScreen from '../components/Post/NewPostScreen';
 import NewPostHeader from './HeaderNavigator/NewPostHeader';
 import HomeHeader from './HeaderNavigator/HomeHeader';
+import LoginScreen from '../screens/LoginScreen';
+import SignupScreen from '../screens/SignupScreen';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export const SignedInStack = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -68,23 +70,14 @@ function RootNavigator() {
   );
 }
 
-function HomeNavigator() {
-  return (
-    <Stack.Navigator >
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerTitle: ChatHomeHeader,
-        }}
-      />
-      <Stack.Screen
-        name="NewPost"
-        component={NewPostScreen}
-        options={{
-          headerTitle: ChatRoomHeader
-        }}
-      />
+export const SignedOutStack = () => (
+  <NavigationContainer>
+    <Stack.Navigator
+      initialRouteName='LoginScreen'
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name='LoginScreen' component={LoginScreen} />
+      <Stack.Screen name='SignupScreen' component={SignupScreen} />
     </Stack.Navigator>
-  );
-}
+  </NavigationContainer>
+)

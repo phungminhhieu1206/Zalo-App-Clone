@@ -7,17 +7,17 @@ import {
 import LoginForm from '../components/LoginScreen/LoginForm'
 import { DismissKeyboard } from '../constants/constantFunc'
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
     return (
         <DismissKeyboard>
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image
                         style={{ width: 100, height: 100 }}
-                        source={require('../assets/logo-instagram.png')}
+                        source={require('../assets/images/logo-instagram.png')}
                     />
                 </View>
-                <LoginForm navigation={navigation} />
+                <LoginForm />
             </View>
         </DismissKeyboard>
     )

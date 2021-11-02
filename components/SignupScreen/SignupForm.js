@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import {
     View,
     Text,
@@ -6,56 +6,54 @@ import {
     StyleSheet,
     Pressable,
     TouchableOpacity,
-    Alert,
+    Alert
 } from 'react-native'
 import auth from '@react-native-firebase/auth'
 
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validator from 'email-validator'
+
 import { useNavigation } from '@react-navigation/core'
 
-const LoginForm = () => {
+const SignupForm = () => {
 
     const navigation = useNavigation();
 
-    const LoginFormSchema = Yup.object().shape({
+    const SignupFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
+        username: Yup.string().required().min(2, 'A username is required'),
         password: Yup.string().required().min(6, 'Your password has to have at least 8 characters'),
     })
 
-    const onLogin = async (email, password) => {
+    // const getRandomProfilePicture = async () => {
+    //     const response = await fetch('https://randomuser.me/api')
+    //     const data = await response.json()
+    //     return data.results[0].picture.large
+    // }
+
+    const onSignup = async (email, password) => {
         try {
-            await auth().signInWithEmailAndPassword(email, password)
-            console.log('Firebase login successful ', email, password)
+            const authUser = await auth().createUserWithEmailAndPassword(email, password)
+            console.log('Firebase user created successfully', email, password)
+            // firestore.collection('users').add({
+            //     owner_uid: authUser.user.uid,
+            //     username: username,
+            // })
         } catch (error) {
-            Alert.alert(
-                'ERROR',
-                error.message + '\n\nWhat would you like to do next ?',
-                [
-                    {
-                        text: 'OK',
-                        onPress: () => console.log('OK'),
-                        style: 'cancel',
-                    },
-                    {
-                        text: 'Sign Up',
-                        onPress: () => navigation.navigate('SignupScreen')
-                    },
-                ]
-            )
+            Alert.alert('ERROR', error.message)
         }
     }
 
     return (
         <View style={styles.wrapper}>
             <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={{ email: '', username: '', password: '' }}
                 onSubmit={values => {
-                    onLogin(values.email, values.password)
-                    console.log(values);
+                    onSignup(values.email, values.password)
+                    // console.log(values)
                 }}
-                validationSchema={LoginFormSchema}
+                validationSchema={SignupFormSchema}
                 validateOnMount={true}
             >
                 {({ handleBlur, handleChange, handleSubmit, values, errors, isValid }) => (
@@ -70,17 +68,34 @@ const LoginForm = () => {
                         >
                             <TextInput
                                 placeholderTextColor='#444'
-                                placeholder='Phone number, username or email'
+                                placeholder='Email'
                                 autoCapitalize='none'
                                 keyboardType='email-address'
                                 textContentType='emailAddress'
-                                // autoFocus={true}
+                                autoFocus={true}
                                 onChangeText={handleChange('email')}
                                 onBlur={handleBlur('email')}
                                 value={values.email}
                             />
                         </View>
-
+                        <View
+                            style={[
+                                styles.inputFiled,
+                                {
+                                    borderColor: values.username.length < 1 || values.username.length >= 2 ? '#ccc' : 'red',
+                                },
+                            ]}
+                        >
+                            <TextInput
+                                placeholderTextColor='#444'
+                                placeholder='Username'
+                                autoCapitalize='none'
+                                textContentType='username'
+                                onChangeText={handleChange('username')}
+                                onBlur={handleBlur('username')}
+                                value={values.username}
+                            />
+                        </View>
                         <View
                             style={[
                                 styles.inputFiled,
@@ -101,26 +116,24 @@ const LoginForm = () => {
                                 value={values.password}
                             />
                         </View>
-                        <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
-                            <Text style={{ color: '#6BB0F5' }}>Forgot password ?</Text>
-                        </View>
                         <Pressable
                             titleSize={20}
                             style={styles.button(isValid)}
                             onPress={handleSubmit}
                             disabled={!isValid}
                         >
-                            <Text style={styles.buttonText}>Log in</Text>
+                            <Text style={styles.buttonText}>Sign Up</Text>
                         </Pressable>
 
-                        <View style={styles.signupContainer}>
-                            <Text>Don't have an account? </Text>
-                            <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
-                                <Text style={{ color: '#6BB0F5' }}>Sign Up</Text>
+                        <View style={styles.loginContainer}>
+                            <Text>Already have an account? </Text>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                                <Text style={{ color: '#6BB0F5' }}>Log In</Text>
                             </TouchableOpacity>
                         </View>
                     </Fragment>
                 )}
+
             </Formik>
         </View>
     )
@@ -128,7 +141,7 @@ const LoginForm = () => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        marginTop: 60,
+        marginTop: 50,
     },
     inputFiled: {
         borderRadius: 5,
@@ -149,7 +162,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
     },
-    signupContainer: {
+    loginContainer: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'center',
@@ -157,4 +170,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoginForm
+export default SignupForm

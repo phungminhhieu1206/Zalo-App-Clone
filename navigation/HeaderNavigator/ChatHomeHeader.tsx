@@ -22,7 +22,7 @@ const ChatHomeHeader = () => {
             width,
             padding: 10,
             alignItems: 'center',
-            marginLeft: -12
+            marginLeft: -12,
         }}>
             <Image
                 source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
@@ -39,19 +39,17 @@ const ChatHomeHeader = () => {
                 fontWeight: 'bold',
                 fontSize: 20
             }}>Chat Room</Text>
-            <TouchableOpacity>
-                <Pressable onPress={() => console.warn('clicked camera of chat room')}>
-                    <Feather
-                        name="camera"
-                        size={24}
-                        color="black"
-                        style={{
-                            marginHorizontal: 10
-                        }}
-                    />
-                </Pressable>
+            <TouchableOpacity onPress={() => console.warn('clicked camera of chat room')}>
+                <Feather
+                    name="camera"
+                    size={24}
+                    color="black"
+                    style={{
+                        marginHorizontal: 10
+                    }}
+                />
             </TouchableOpacity>
-            <Pressable onPress={() => console.warn('clicked pencil of chat room')}>
+            <TouchableOpacity onPress={() => console.warn('clicked pencil of chat room')}>
                 <Feather
                     name="edit-2"
                     size={24}
@@ -61,7 +59,7 @@ const ChatHomeHeader = () => {
                         marginRight: 20
                     }}
                 />
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }

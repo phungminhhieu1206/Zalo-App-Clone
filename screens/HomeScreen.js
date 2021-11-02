@@ -3,24 +3,21 @@ import {
     SafeAreaView,
     StyleSheet,
     ScrollView,
-    Text
 } from 'react-native'
 import Stories from '../components/HomeScreen/Stories'
-// import Header from '../components/home/Header'
 import { POSTS } from '../assets/fake-data/Posts'
 import Post from '../components/HomeScreen/Post.js'
 
 const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            {/* <Header /> */}
-            <Stories />
+
             <ScrollView>
+                <Stories />
                 {POSTS.map((post, index) => (
                     <Post post={post} key={index} />
                 ))}
             </ScrollView>
-            {/* <BottomTabs icons={bottomTabIcons} /> */}
         </SafeAreaView>
     )
 }

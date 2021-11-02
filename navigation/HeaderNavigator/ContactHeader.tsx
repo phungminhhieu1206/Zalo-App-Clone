@@ -5,6 +5,7 @@ import {
     Text,
     useWindowDimensions,
     Pressable,
+    TouchableOpacity
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,7 @@ const ContactHeader = () => {
             width,
             padding: 10,
             alignItems: 'center',
-            marginLeft: -12
+            marginLeft: -12,
         }}>
             <Image
                 source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
@@ -38,7 +39,7 @@ const ContactHeader = () => {
                 fontWeight: 'bold',
                 fontSize: 20
             }}>Contact</Text>
-            <Pressable onPress={() => console.warn('click camera of contact')}>
+            <TouchableOpacity onPress={() => console.warn('clicked camera of contact')}>
                 <Feather
                     name="camera"
                     size={24}
@@ -47,8 +48,8 @@ const ContactHeader = () => {
                         marginHorizontal: 10
                     }}
                 />
-            </Pressable>
-            <Pressable onPress={() => console.warn('clicked pencil of contact')}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => console.warn('clicked pencil of contact')}>
                 <Feather
                     name="edit-2"
                     size={24}
@@ -58,7 +59,7 @@ const ContactHeader = () => {
                         marginRight: 20
                     }}
                 />
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }

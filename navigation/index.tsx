@@ -19,6 +19,7 @@ import ChatRoomHeader from './HeaderNavigator/ChatRoomHeader';
 import HomeScreen from '../screens/HomeScreen';
 import NewPostScreen from '../components/Post/NewPostScreen';
 import NewPostHeader from './HeaderNavigator/NewPostHeader';
+import HomeHeader from './HeaderNavigator/HomeHeader';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -54,6 +55,13 @@ function RootNavigator() {
         component={NewPostScreen}
         options={{
           headerTitle: NewPostHeader
+        }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerTitle: HomeHeader
         }}
       />
     </Stack.Navigator>

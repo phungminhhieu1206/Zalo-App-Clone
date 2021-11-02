@@ -5,6 +5,7 @@ import {
     Text,
     useWindowDimensions,
     Pressable,
+    TouchableOpacity
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,7 @@ const MeHeader = () => {
             width,
             padding: 10,
             alignItems: 'center',
-            marginLeft: -12
+            marginLeft: -12,
         }}>
             <Image
                 source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
@@ -38,7 +39,7 @@ const MeHeader = () => {
                 fontWeight: 'bold',
                 fontSize: 20
             }}>My Channel</Text>
-            <Pressable onPress={() => console.warn('click camera of my channel')}>
+            <TouchableOpacity onPress={() => console.warn('clicked camera of my channel')}>
                 <Feather
                     name="camera"
                     size={24}
@@ -47,8 +48,8 @@ const MeHeader = () => {
                         marginHorizontal: 10
                     }}
                 />
-            </Pressable>
-            <Pressable onPress={() => console.warn('clicked pencil of my channel')}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => console.warn('clicked pencil of my channel')}>
                 <Feather
                     name="edit-2"
                     size={24}
@@ -58,7 +59,7 @@ const MeHeader = () => {
                         marginRight: 20
                     }}
                 />
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }

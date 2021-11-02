@@ -5,6 +5,7 @@ import {
     Text,
     useWindowDimensions,
     Pressable,
+    TouchableOpacity
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,7 @@ const HomeHeader = () => {
             width,
             padding: 10,
             alignItems: 'center',
-            marginLeft: -12
+            marginLeft: -12,
         }}>
             <Image
                 source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
@@ -38,7 +39,7 @@ const HomeHeader = () => {
                 fontWeight: 'bold',
                 fontSize: 20
             }}>Timeline</Text>
-            <Pressable onPress={() => console.warn('clicked camera of timeline')}>
+            <TouchableOpacity onPress={() => console.warn('clicked camera of timeline')}>
                 <Feather
                     name="camera"
                     size={24}
@@ -47,8 +48,8 @@ const HomeHeader = () => {
                         marginHorizontal: 10
                     }}
                 />
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("NewPost")}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("NewPost")}>
                 <Feather
                     name="edit-2"
                     size={24}
@@ -58,7 +59,7 @@ const HomeHeader = () => {
                         marginRight: 20
                     }}
                 />
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }

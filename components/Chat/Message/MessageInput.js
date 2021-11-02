@@ -14,6 +14,7 @@ import {
     AntDesign,
     Ionicons
 } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const MessageInput = () => {
 
@@ -46,8 +47,9 @@ const MessageInput = () => {
             keyboardVerticalOffset={70}
         >
             <View style={styles.inputContainer}>
-                <SimpleLineIcons name="emotsmile" size={24} style={styles.icon} />
-
+                <TouchableOpacity>
+                    <SimpleLineIcons name="emotsmile" size={24} style={styles.icon} />
+                </TouchableOpacity>
                 <TextInput
                     placeholder="Message..."
                     placeholderTextColor="lightgrey"
@@ -55,9 +57,12 @@ const MessageInput = () => {
                     onChangeText={(newMessage) => setMessage(newMessage)}
                     style={styles.inputBox}
                 />
-
-                <Feather name="camera" size={24} style={styles.icon} />
-                <MaterialCommunityIcons name="microphone-outline" size={24} style={styles.icon} />
+                <TouchableOpacity>
+                    <Feather name="camera" size={24} style={styles.icon} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <MaterialCommunityIcons name="microphone-outline" size={24} style={styles.icon} />
+                </TouchableOpacity>
             </View>
             <Pressable onPress={onPressHandle} style={styles.buttonContainer}>
                 {message ? <Ionicons name="send" size={20} color='white' /> : <AntDesign name="plus" size={30} color='white' />}

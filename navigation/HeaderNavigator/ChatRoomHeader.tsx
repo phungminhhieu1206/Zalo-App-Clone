@@ -7,6 +7,7 @@ import {
     Pressable,
 } from "react-native";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ChatRoomHeader = () => {
     const { width } = useWindowDimensions();
@@ -37,31 +38,37 @@ const ChatRoomHeader = () => {
                 fontSize: 20,
                 paddingLeft: 10
             }}>Username</Text>
-            <Feather
-                name="phone"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 10,
-                }}
-            />
-            <AntDesign
-                name="videocamera"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 5,
-                }}
-            />
-            <Feather
-                name="more-vertical"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 5,
-                    marginRight: 35
-                }}
-            />
+            <TouchableOpacity>
+                <Feather
+                    name="phone"
+                    size={24}
+                    color="black"
+                    style={{
+                        marginHorizontal: 10,
+                    }}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <AntDesign
+                    name="videocamera"
+                    size={24}
+                    color="black"
+                    style={{
+                        marginHorizontal: 5,
+                    }}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Feather
+                    name="more-vertical"
+                    size={24}
+                    color="black"
+                    style={{
+                        marginHorizontal: 5,
+                        marginRight: 35
+                    }}
+                />
+            </TouchableOpacity>
         </View>
     )
 }

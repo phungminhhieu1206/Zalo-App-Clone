@@ -9,6 +9,9 @@ import { MaterialIcons, MaterialCommunityIcons, Ionicons } from '@expo/vector-ic
 
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ChatHomeScreen from '../screens/ChatHomeScreen';
+import HomeScreen from '../screens/HomeScreen';
+import MyScreen from '../screens/MyScreen';
+import ContactScreen from '../screens/ContactScreen';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -72,8 +75,8 @@ function TabTwoNavigator() {
     <TabTwoStack.Navigator screenOptions={{ headerShown: false }}>
       <TabTwoStack.Screen
         name="TabTwoScreen"
-        component={ChatRoomScreen}
-        options={{ headerTitle: 'Chat' }}
+        component={ContactScreen}
+        options={{ headerTitle: 'ContactScreen' }}
       />
     </TabTwoStack.Navigator>
   );
@@ -86,8 +89,8 @@ function TabThreeNavigator() {
     <TabThreeStack.Navigator screenOptions={{ headerShown: false }}>
       <TabThreeStack.Screen
         name="TabThreeScreen"
-        component={ChatRoomScreen}
-        options={{ headerTitle: 'Chat' }}
+        component={HomeScreen}
+        options={{ headerTitle: 'Home' }}
       />
     </TabThreeStack.Navigator>
   );
@@ -100,8 +103,8 @@ function TabFourNavigator() {
     <TabFourStack.Navigator screenOptions={{ headerShown: false }}>
       <TabFourStack.Screen
         name="TabFourScreen"
-        component={ChatRoomScreen}
-        options={{ headerTitle: 'Chat' }}
+        component={MyScreen}
+        options={{ headerTitle: 'MyScreen' }}
       />
     </TabFourStack.Navigator>
   );

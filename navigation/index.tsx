@@ -31,7 +31,9 @@ function RootNavigator() {
       <Stack.Screen
         name="ChatHome"
         component={BottomTabNavigator}
-        options={{ headerTitle: ChatHomeHeader, }}
+        options={{
+          headerTitle: ChatHomeHeader,
+        }}
       />
       <Stack.Screen
         name="ChatRoom"

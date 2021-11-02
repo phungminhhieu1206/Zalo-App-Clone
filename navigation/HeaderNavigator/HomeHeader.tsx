@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-const ChatHomeHeader = () => {
+const HomeHeader = () => {
     const { width } = useWindowDimensions();
 
     return (
@@ -35,7 +35,7 @@ const ChatHomeHeader = () => {
                 marginLeft: 25,
                 fontWeight: 'bold',
                 fontSize: 20
-            }}>My Zalo</Text>
+            }}>Home</Text>
             <Pressable onPress={() => console.warn('clicked camera')}>
                 <Feather
                     name="camera"
@@ -61,4 +61,4 @@ const ChatHomeHeader = () => {
     )
 }
 
-export default ChatHomeHeader
+export default HomeHeader

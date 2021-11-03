@@ -15,36 +15,24 @@ const ChatRoomHeader = () => {
 
   const navigation = useNavigation();
 
-  // console.log(props);
-
   return (
     <View style={{
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: width,
-      padding: 10,
+      paddingVertical: 11,
+      paddingLeft: 5,
       alignItems: 'center',
       marginLeft: -16,
-      backgroundColor: '#019ff8'
+      backgroundColor: '#019ff8',
     }}>
       <TouchableOpacity onPress={() => navigation.navigate("ChatHome")}>
         <Ionicons
           name="chevron-back"
           size={30}
           color="white"
-          style={{
-            marginRight: 15
-          }}
         />
       </TouchableOpacity>
-      <Image
-        source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: 20
-        }}
-      />
       <Text
         numberOfLines={1}
         style={{
@@ -52,7 +40,7 @@ const ChatRoomHeader = () => {
           textAlign: 'left',
           fontSize: 20,
           paddingLeft: 10,
-          color: 'white'
+          color: 'white',
         }}>Username</Text>
       <TouchableOpacity>
         <Feather
@@ -70,7 +58,7 @@ const ChatRoomHeader = () => {
           size={24}
           color="white"
           style={{
-            marginHorizontal: 5,
+            marginHorizontal: 15,
           }}
         />
       </TouchableOpacity>

@@ -17,11 +17,15 @@ import NewPostScreen from '../components/Post/NewPostScreen';
 import NewPostHeader from './HeaderNavigator/NewPostHeader';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
-import ChatRoomHeader from './HeaderNavigator/ChatRoomHeader';
 import SearchFriend from '../components/Friend/SearchFriend';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, } from '@react-navigation/core';
 import { AntDesign, Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import SearchFriendHeader from './HeaderNavigator/SearchFriendHeader';
+import ChatRoomHeader from './HeaderNavigator/ChatRoomHeader';
+import MyChannel from '../components/MyChannel/MyChannel';
+import MyChannelHeader from './HeaderNavigator/MyChannelHeader';
+import MyChannelSetup from '../components/MyChannel/MyChannelSetup';
+import MyChannelSetupHeader from './HeaderNavigator/MyChannelSetupHeader';
 
 export const SignedInStack = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -57,7 +61,8 @@ function RootNavigator() {
         name="NewPost"
         component={NewPostScreen}
         options={{
-          headerTitle: NewPostHeader
+          headerTitle: NewPostHeader,
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen
@@ -68,6 +73,23 @@ function RootNavigator() {
           headerBackVisible: false,
         }}
       />
+      <Stack.Screen
+        name="MyChannel"
+        component={MyChannel}
+        options={{
+          headerTitle: MyChannelHeader,
+          headerBackVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="MyChannelSetup"
+        component={MyChannelSetup}
+        options={{
+          headerTitle: MyChannelSetupHeader,
+          headerBackVisible: false,
+        }}
+      />
+
     </Stack.Navigator>
   );
 }

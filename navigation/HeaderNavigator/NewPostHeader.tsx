@@ -5,64 +5,73 @@ import {
     Text,
     useWindowDimensions,
     Pressable,
+    TouchableOpacity,
 } from "react-native";
-import { Feather, AntDesign } from "@expo/vector-icons";
+import { Feather, AntDesign, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/core';
 
 const NewPostHeader = () => {
     const { width } = useWindowDimensions();
 
-    // console.log(props);
+    const navigation = useNavigation();
 
     return (
         <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            width,
-            padding: 10,
+            width: width,
+            paddingVertical: 11,
+            paddingLeft: 5,
             alignItems: 'center',
-            marginLeft: -30,
-            backgroundColor: '#019ff8'
+            marginLeft: -16,
+            backgroundColor: '#019ff8',
         }}>
-            <Image
-                source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Ionicons
+                    name="chevron-back"
+                    size={30}
+                    color="white"
+                />
+            </TouchableOpacity>
+            <Text
+                numberOfLines={1}
                 style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20
-                }}
-            />
-            <Text style={{
-                flex: 1,
-                textAlign: 'left',
-                fontWeight: 'bold',
-                fontSize: 20,
-                paddingLeft: 10
-            }}>New Post</Text>
-            <Feather
-                name="phone"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 10,
-                }}
-            />
-            <AntDesign
-                name="videocamera"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 5,
-                }}
-            />
-            <Feather
-                name="more-vertical"
-                size={24}
-                color="black"
-                style={{
-                    marginHorizontal: 5,
-                    marginRight: 35
-                }}
-            />
+                    flex: 1,
+                    textAlign: 'left',
+                    fontSize: 20,
+                    paddingLeft: 10,
+                    color: 'white',
+                }}>Username</Text>
+            <TouchableOpacity>
+                <Feather
+                    name="phone"
+                    size={24}
+                    color="white"
+                    style={{
+                        marginHorizontal: 10,
+                    }}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <AntDesign
+                    name="videocamera"
+                    size={24}
+                    color="white"
+                    style={{
+                        marginHorizontal: 15,
+                    }}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Feather
+                    name="more-vertical"
+                    size={24}
+                    color="white"
+                    style={{
+                        marginHorizontal: 5,
+                    }}
+                />
+            </TouchableOpacity>
         </View>
     )
 }

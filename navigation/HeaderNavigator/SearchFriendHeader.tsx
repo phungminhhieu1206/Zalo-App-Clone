@@ -23,7 +23,7 @@ const SearchFriendHeader = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             width: width,
-            paddingVertical: 10,
+            paddingVertical: 11,
             paddingLeft: 5,
             alignItems: 'center',
             marginLeft: -16,

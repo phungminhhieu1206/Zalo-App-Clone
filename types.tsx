@@ -24,6 +24,8 @@ export type RootStackParamList = {
   LoginScreen: undefined;
   SignupScreen: undefined;
   SearchFriend: undefined;
+  MyChannel: undefined;
+  MyChannelSetup: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

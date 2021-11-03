@@ -1,63 +1,66 @@
 import React from 'react'
 import {
     View,
-    Image,
-    Text,
     useWindowDimensions,
-    Pressable,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput,
+    Text
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import {
+    AntDesign,
+    EvilIcons,
+    MaterialCommunityIcons
+} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const MeHeader = () => {
     const { width } = useWindowDimensions();
+
     const navigation = useNavigation();
 
     return (
         <View style={{
             flex: 1,
             flexDirection: 'row',
-            justifyContent: 'space-between',
             width,
             padding: 10,
             alignItems: 'center',
-            marginLeft: -12,
+            marginLeft: -16,
             backgroundColor: '#019ff8'
         }}>
-            <Image
-                source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
-                style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20
-                }}
-            />
-            <Text style={{
-                flex: 1,
-                textAlign: 'center',
-                marginLeft: 25,
-                fontWeight: 'bold',
-                fontSize: 20
-            }}>My Channel</Text>
-            <TouchableOpacity onPress={() => console.warn('clicked camera of my channel')}>
-                <Feather
-                    name="camera"
-                    size={24}
-                    color="black"
+            <TouchableOpacity onPress={() => navigation.navigate('SearchFriend')}>
+                <EvilIcons
+                    name="search"
+                    size={32}
+                    color="white"
                     style={{
-                        marginHorizontal: 10
+                        marginLeft: -5
                     }}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.warn('clicked pencil of my channel')}>
-                <Feather
-                    name="edit-2"
-                    size={24}
-                    color="black"
+            <TouchableOpacity
+                style={{
+                    flex: 1,
+                }}
+                onPress={() => navigation.navigate('SearchFriend')}
+            >
+                <Text
+                    numberOfLines={1}
                     style={{
-                        marginHorizontal: 10,
-                        marginRight: 20
+                        height: '100%',
+                        color: 'white',
+                        textAlignVertical: 'center',
+                        fontSize: 16,
+                        marginLeft: 18,
+                    }}
+                >Search friends, messages...</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => console.warn('clicked setting of my channel')}>
+                <AntDesign
+                    name="setting"
+                    size={24}
+                    color="white"
+                    style={{
                     }}
                 />
             </TouchableOpacity>

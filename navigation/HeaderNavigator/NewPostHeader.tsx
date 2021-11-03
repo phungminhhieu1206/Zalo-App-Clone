@@ -21,6 +21,7 @@ const NewPostHeader = () => {
             padding: 10,
             alignItems: 'center',
             marginLeft: -30,
+            backgroundColor: '#019ff8'
         }}>
             <Image
                 source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}

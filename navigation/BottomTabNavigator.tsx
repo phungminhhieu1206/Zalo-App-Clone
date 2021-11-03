@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign, EvilIcons, Feather, FontAwesome } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import { MaterialIcons, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
@@ -13,9 +13,18 @@ import HomeScreen from '../screens/HomeScreen';
 import MyScreen from '../screens/MyScreen';
 import ContactScreen from '../screens/ContactScreen';
 import HomeHeader from './HeaderNavigator/HomeHeader';
-import ChatHomeHeader from './HeaderNavigator/ChatHomeHeader';
 import ContactHeader from './HeaderNavigator/ContactHeader';
 import MeHeader from './HeaderNavigator/MeHeader';
+import {
+  View,
+  Text,
+  Image,
+  useWindowDimensions,
+  TouchableOpacity,
+  TextInput
+} from 'react-native'
+import { useNavigation } from '@react-navigation/core';
+import ChatHomeHeader from './HeaderNavigator/ChatHomeHeader';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -113,3 +122,5 @@ function TabFourNavigator() {
     </TabFourStack.Navigator>
   );
 }
+
+

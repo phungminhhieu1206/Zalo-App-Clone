@@ -2,11 +2,10 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-  useNavigation
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, View, Image, Text, useWindowDimensions, Pressable } from 'react-native';
+import { ColorSchemeName, View, Image, Text, useWindowDimensions, Pressable, Button, TouchableOpacity, TextInput } from 'react-native';
 
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import ChatHomeScreen from '../screens/ChatHomeScreen';
@@ -14,14 +13,15 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 
 import BottomTabNavigator from './BottomTabNavigator';
-import ChatHomeHeader from './HeaderNavigator/ChatHomeHeader';
-import ChatRoomHeader from './HeaderNavigator/ChatRoomHeader';
-import HomeScreen from '../screens/HomeScreen';
 import NewPostScreen from '../components/Post/NewPostScreen';
 import NewPostHeader from './HeaderNavigator/NewPostHeader';
-import HomeHeader from './HeaderNavigator/HomeHeader';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import ChatRoomHeader from './HeaderNavigator/ChatRoomHeader';
+import SearchFriend from '../components/Friend/SearchFriend';
+import { useNavigation } from '@react-navigation/core';
+import { AntDesign, Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import SearchFriendHeader from './HeaderNavigator/SearchFriendHeader';
 
 export const SignedInStack = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -43,13 +43,15 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{
           headerShown: false,
+
         }}
       />
       <Stack.Screen
         name="ChatRoom"
         component={ChatRoomScreen}
         options={{
-          headerTitle: ChatRoomHeader
+          headerTitle: ChatRoomHeader,
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen
@@ -60,10 +62,11 @@ function RootNavigator() {
         }}
       />
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
+        name="SearchFriend"
+        component={SearchFriend}
         options={{
-          headerTitle: HomeHeader
+          headerTitle: SearchFriendHeader,
+          headerBackVisible: false,
         }}
       />
     </Stack.Navigator>
@@ -81,3 +84,4 @@ export const SignedOutStack = () => (
     </Stack.Navigator>
   </NavigationContainer>
 )
+

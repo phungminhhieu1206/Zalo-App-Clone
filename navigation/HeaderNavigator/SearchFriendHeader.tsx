@@ -27,7 +27,7 @@ const SearchFriendHeader = () => {
             paddingLeft: 5,
             alignItems: 'center',
             marginLeft: -16,
-            backgroundColor: '#019ff8'
+            backgroundColor: '#019ff8',
         }}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Ionicons
@@ -55,7 +55,7 @@ const SearchFriendHeader = () => {
                     paddingHorizontal: 10
                 }}
             />
-            <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
+            <TouchableOpacity onPress={() => console.warn('clicked qrcode of search friend screen')}>
                 <MaterialCommunityIcons
                     name="qrcode-scan"
                     size={22}

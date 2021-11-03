@@ -43,7 +43,6 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{
           headerShown: false,
-
         }}
       />
       <Stack.Screen

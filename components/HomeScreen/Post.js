@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
     container: {
         borderTopColor: 'lightgrey',
         borderTopWidth: 1,
+        backgroundColor: 'white'
     },
     profile_picture: {
         width: 40,

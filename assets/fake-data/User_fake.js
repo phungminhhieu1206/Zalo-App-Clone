@@ -1,10 +1,10 @@
 export const USERS = [
     {
-        user: 'phunghieu1206',
+        user: 'Phung Minh Hieu (BKA 2018)',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-dai-dien-avt-anime-dep-cho-con-trai-397x390.jpg'
     },
     {
-        user: 'phuonganhtr',
+        user: 'phuonganh',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avt-anime-chat-nhat-580x580.jpg'
     },
     {

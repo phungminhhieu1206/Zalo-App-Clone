@@ -34,6 +34,7 @@ const ChatHomeHeader = () => {
                     size={32}
                     color="white"
                     style={{
+                        marginLeft: -5
                     }}
                 />
             </TouchableOpacity>
@@ -50,7 +51,7 @@ const ChatHomeHeader = () => {
                         color: 'white',
                         textAlignVertical: 'center',
                         fontSize: 16,
-                        marginLeft: 15,
+                        marginLeft: 18,
                     }}
                 >Search friends, messages...</Text>
             </TouchableOpacity>

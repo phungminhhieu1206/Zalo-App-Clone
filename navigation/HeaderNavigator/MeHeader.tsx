@@ -55,7 +55,7 @@ const MeHeader = () => {
                     }}
                 >Search friends, messages...</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.warn('clicked setting of my channel')}>
+            <TouchableOpacity onPress={() => navigation.navigate("MyChannelSetting")}>
                 <AntDesign
                     name="setting"
                     size={24}

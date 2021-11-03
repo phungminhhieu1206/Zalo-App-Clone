@@ -26,6 +26,7 @@ export type RootStackParamList = {
   SearchFriend: undefined;
   MyChannel: undefined;
   MyChannelSetup: undefined;
+  MyChannelSetting: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

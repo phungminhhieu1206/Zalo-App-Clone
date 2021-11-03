@@ -26,6 +26,8 @@ import MyChannel from '../components/MyChannel/MyChannel';
 import MyChannelHeader from './HeaderNavigator/MyChannelHeader';
 import MyChannelSetup from '../components/MyChannel/MyChannelSetup';
 import MyChannelSetupHeader from './HeaderNavigator/MyChannelSetupHeader';
+import MyChannelSetting from '../components/MyChannel/MyChannelSetting';
+import MyChannelSettingHeader from './HeaderNavigator/MyChannelSettingHeader';
 
 export const SignedInStack = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -86,6 +88,14 @@ function RootNavigator() {
         component={MyChannelSetup}
         options={{
           headerTitle: MyChannelSetupHeader,
+          headerBackVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="MyChannelSetting"
+        component={MyChannelSetting}
+        options={{
+          headerTitle: MyChannelSettingHeader,
           headerBackVisible: false,
         }}
       />

@@ -5,7 +5,8 @@ import {
     TextInput,
     Pressable,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    TouchableOpacity
 } from 'react-native'
 import {
     SimpleLineIcons,
@@ -14,7 +15,6 @@ import {
     AntDesign,
     Ionicons
 } from '@expo/vector-icons'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const MessageInput = () => {
 

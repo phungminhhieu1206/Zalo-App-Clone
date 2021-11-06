@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import React, { useState } from 'react'
 import {
     View,
@@ -12,25 +12,27 @@ import {
 import CommentInput from './CommentInput'
 
 const CommentScreen = () => {
+    const route = useRoute();
+
+    // console.log(route.params?.post);
+    const post = route.params?.post;
+
     return (
         <SafeAreaView style={{
             flex: 1
         }}>
             <ScrollView>
-                <CommentItem />
-                <CommentItem />
-                <CommentItem />
-                <CommentItem />
-                <CommentItem />
-                <CommentItem />
-                <CommentItem />
+                {post.comments.map((comment, index) => (
+                    <CommentItem key={index} user={comment.user} comment={comment.comment} />
+                ))}
+
             </ScrollView>
             <CommentInput />
         </SafeAreaView>
     )
 }
 
-const CommentItem = () => {
+const CommentItem = ({ user, comment }) => {
     const navigation = useNavigation();
 
     const [liked, setLiked] = useState(false);
@@ -55,7 +57,7 @@ const CommentItem = () => {
         }}>
             <TouchableOpacity onPress={() => console.warn("click channel of commenter")}>
                 <Image
-                    source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+                    source={{ uri: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avt-anime-chat-nhat-580x580.jpg' }}
                     style={{
                         width: 40,
                         height: 40,
@@ -74,11 +76,11 @@ const CommentItem = () => {
                         fontWeight: 'bold',
                         fontSize: 15,
                         color: 'black'
-                    }}>Username</Text>
+                    }}>{user}</Text>
                 <Text style={{
                     paddingTop: 3,
                     fontSize: 14
-                }}>🔥🔥🔥Ghé nhà Gems rinh những mẫu vòng charm đá phong thuỷ siêu hot hit nha cả nhà❤️❤️🙌</Text>
+                }}>{comment}</Text>
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',

@@ -9,21 +9,23 @@ import {
 import {
     AntDesign,
     Feather,
-    MaterialCommunityIcons
+    MaterialCommunityIcons,
+    SimpleLineIcons
 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 
 const Post = ({ post }) => {
+    // console.log(post);
+
     return (
-        <View style={[styles.container, { marginBottom: 30 }]}>
+        <View style={styles.container}>
             <PostHeader post={post} />
             {post.caption ? <Caption post={post} /> : null}
             <PostImage post={post} />
-            <View style={{ marginHorizontal: 15, marginTop: 10 }}>
-                <PostFooter post={post} />
-                <CommentSection post={post} />
-                <Comments post={post} />
-            </View>
+            <PostFooter post={post} />
+            {/* <CommentSection post={post} /> */}
+            {/* <Comments post={post} /> */}
+
         </View>
     )
 }
@@ -106,37 +108,95 @@ const PostFooter = ({ post }) => {
         post.likes -= 1;
     }
 
+    const onPressComment = () => {
+        navigation.navigate("Comment", { post: post })
+    }
+
     return (
-        <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-        }}>
-            {liked ?
-                <TouchableOpacity onPress={onPressRedLike}>
-                    <AntDesign name="heart" size={33} color="red" />
+        <View>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                borderBottomWidth: 1,
+                borderColor: '#F2F2F2'
+            }}>
+                {liked ?
+                    <TouchableOpacity onPress={onPressRedLike}>
+                        <AntDesign name="heart" size={30} color="red" />
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity onPress={onPressWhiteLike}>
+                        <AntDesign name="hearto" size={30} color="black" />
+                    </TouchableOpacity>
+                }
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        fontSize: 18,
+                        marginLeft: 8,
+                        width: 60,
+                    }}>{post.likes}</Text>
+                <TouchableOpacity onPress={onPressComment}>
+                    <MaterialCommunityIcons name="comment-processing-outline" size={33} color="black" />
                 </TouchableOpacity>
-                :
-                <TouchableOpacity onPress={onPressWhiteLike}>
-                    <AntDesign name="hearto" size={33} color="black" />
-                </TouchableOpacity>
-            }
-            <Text
-                numberOfLines={1}
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        fontSize: 18,
+                        marginLeft: 8,
+                        width: 60,
+                    }}>{post.comments.length}</Text>
+            </View>
+            <TouchableOpacity
+                onPress={onPressComment}
                 style={{
-                    fontSize: 18,
-                    marginLeft: 8,
-                    width: 60,
-                }}>{post.likes}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Comment")}>
-                <MaterialCommunityIcons name="comment-processing-outline" size={33} color="black" />
+                    flexDirection: 'row',
+                    paddingHorizontal: 20,
+                    paddingVertical: 10,
+                    alignItems: 'center'
+                }}
+            >
+                <Image
+                    source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+                    style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 15,
+                        marginRight: 10
+                    }}
+                />
+                <View style={{
+                    backgroundColor: '#f8f8f8',
+                    flex: 1,
+                    borderRadius: 25,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    padding: 5
+                }}>
+                    <SimpleLineIcons
+                        name="emotsmile"
+                        size={24}
+                        style={{
+                            marginHorizontal: 5,
+                            color: '#595959'
+                        }}
+                    />
+                    <Text
+                        style={{
+                            flex: 1,
+                            marginHorizontal: 5,
+                            color: 'lightgrey'
+                        }}
+                    >Write a comment</Text>
+                    <Feather name="camera" size={24} style={{
+                        marginHorizontal: 5,
+                        color: '#595959'
+                    }} />
+
+                </View>
             </TouchableOpacity>
-            <Text
-                numberOfLines={1}
-                style={{
-                    fontSize: 18,
-                    marginLeft: 8,
-                    width: 60,
-                }}>12</Text>
         </View>
     )
 }
@@ -147,13 +207,13 @@ const PostFooter = ({ post }) => {
 //     </TouchableOpacity>
 // )
 
-const Likes = ({ post }) => (
-    <View style={{ flexDirection: 'row', marginTop: 4 }}>
-        <Text style={{ color: 'white', fontWeight: '600' }}>
-            {post.likes.toLocaleString('en')} likes
-        </Text>
-    </View>
-)
+// const Likes = ({ post }) => (
+//     <View style={{ flexDirection: 'row', marginTop: 4 }}>
+//         <Text style={{ color: 'white', fontWeight: '600' }}>
+//             {post.likes.toLocaleString('en')} likes
+//         </Text>
+//     </View>
+// )
 
 const Caption = ({ post }) => (
     <View style={{}}>
@@ -179,18 +239,18 @@ const CommentSection = ({ post }) => (
     </View>
 )
 
-const Comments = ({ post }) => (
-    <Fragment>
-        {post.comments.map((comment, index) => (
-            <View key={index} style={{ flexDirection: 'row', marginTop: 3 }}>
-                <Text style={{ color: 'black' }}>
-                    <Text style={{ fontWeight: '600' }}>{comment.user}</Text>
-                    {' '}{comment.comment}
-                </Text>
-            </View>
-        ))}
-    </Fragment>
-)
+// const Comments = ({ post }) => (
+//     <Fragment>
+//         {post.comments.map((comment, index) => (
+//             <View key={index} style={{ flexDirection: 'row', marginTop: 3 }}>
+//                 <Text style={{ color: 'black' }}>
+//                     <Text style={{ fontWeight: '600' }}>{comment.user}</Text>
+//                     {' '}{comment.comment}
+//                 </Text>
+//             </View>
+//         ))}
+//     </Fragment>
+// )
 
 const styles = StyleSheet.create({
     container: {

@@ -56,6 +56,7 @@ const CommentInput = () => {
                     value={message}
                     onChangeText={(newMessage) => setMessage(newMessage)}
                     style={styles.inputBox}
+                    autoFocus={true}
                 />
                 <TouchableOpacity>
                     <Feather name="camera" size={24} style={styles.icon} />

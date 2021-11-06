@@ -5,6 +5,12 @@ import { USERS } from '../../assets/fake-data/User_fake'
 const Stories = () => {
     return (
         <View style={[styles.container, { marginBottom: 13 }]}>
+            <Text style={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: 14,
+                marginBottom: 10
+            }}>Story</Text>
             <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}

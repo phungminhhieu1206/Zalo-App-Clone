@@ -7,6 +7,7 @@ import {
 import Stories from '../components/HomeScreen/Stories'
 import { POSTS } from '../assets/fake-data/Posts'
 import Post from '../components/HomeScreen/Post.js'
+import NewPost from '../components/HomeScreen/NewPost'
 
 const HomeScreen = () => {
     return (
@@ -14,6 +15,7 @@ const HomeScreen = () => {
 
             <ScrollView>
                 <Stories />
+                <NewPost />
                 {POSTS.map((post, index) => (
                     <Post post={post} key={index} />
                 ))}

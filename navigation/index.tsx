@@ -28,6 +28,8 @@ import MyChannelSetup from '../components/MyChannel/MyChannelSetup';
 import MyChannelSetupHeader from './HeaderNavigator/MyChannelSetupHeader';
 import MyChannelSetting from '../components/MyChannel/MyChannelSetting';
 import MyChannelSettingHeader from './HeaderNavigator/MyChannelSettingHeader';
+import CommentScreen from '../components/Post/CommentScreen';
+import CommentHeader from './HeaderNavigator/CommentHeader';
 
 export const SignedInStack = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -64,6 +66,14 @@ function RootNavigator() {
         component={NewPostScreen}
         options={{
           headerTitle: NewPostHeader,
+          headerBackVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Comment"
+        component={CommentScreen}
+        options={{
+          headerTitle: CommentHeader,
           headerBackVisible: false,
         }}
       />

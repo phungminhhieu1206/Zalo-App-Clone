@@ -21,6 +21,7 @@ export type RootStackParamList = {
   ChatRoom: undefined;
   Home: undefined;
   NewPost: undefined;
+  Comment: undefined;
   LoginScreen: undefined;
   SignupScreen: undefined;
   SearchFriend: undefined;

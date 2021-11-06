@@ -11,6 +11,7 @@ import {
     Feather,
     MaterialCommunityIcons
 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 
 const Post = ({ post }) => {
     return (
@@ -44,15 +45,28 @@ const PostHeader = ({ post }) => (
                 source={{ uri: post.profile_picture }}
                 style={styles.profile_picture}
             />
-            <Text
-                style={{
-                    color: 'black',
-                    marginLeft: 5,
-                    fontWeight: '700'
-                }}
-            >
-                {post.user}
-            </Text>
+            <View style={{
+                marginLeft: 12,
+            }}>
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontSize: 16
+                    }}
+                >
+                    {post.user}
+                </Text>
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        color: 'grey',
+                        fontSize: 12
+                    }}
+                >Today at 11:22</Text>
+            </View>
+
         </View>
 
         <TouchableOpacity>
@@ -78,6 +92,8 @@ const PostImage = ({ post }) => (
 )
 
 const PostFooter = ({ post }) => {
+    const navigation = useNavigation();
+
     const [liked, setLiked] = useState(false);
 
     const onPressWhiteLike = () => {
@@ -111,7 +127,7 @@ const PostFooter = ({ post }) => {
                     marginLeft: 8,
                     width: 60,
                 }}>{post.likes}</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Comment")}>
                 <MaterialCommunityIcons name="comment-processing-outline" size={33} color="black" />
             </TouchableOpacity>
             <Text
@@ -178,16 +194,14 @@ const Comments = ({ post }) => (
 
 const styles = StyleSheet.create({
     container: {
-        borderTopColor: 'lightgrey',
-        borderTopWidth: 1,
+        borderTopColor: '#f8f8f8',
+        borderTopWidth: 7,
         backgroundColor: 'white'
     },
     profile_picture: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        borderWidth: 1.6,
-        borderColor: '#ff8501'
     },
 })
 

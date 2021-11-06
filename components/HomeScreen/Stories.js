@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, Image, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { USERS } from '../../assets/fake-data/User_fake'
 
 const Stories = () => {
@@ -16,7 +16,7 @@ const Stories = () => {
                 showsHorizontalScrollIndicator={false}
             >
                 {USERS.map((story, index) => (
-                    <View key={index} style={{ alignItems: 'center' }}>
+                    <TouchableOpacity key={index} style={{ alignItems: 'center' }}>
                         < Image
                             source={{ uri: story.image }}
                             style={styles.story}
@@ -24,7 +24,7 @@ const Stories = () => {
                         <Text style={{ color: 'black' }}>{
                             story.user.length > 10 ? story.user.slice(0, 9).toLowerCase() + '...' : story.user.toLowerCase()
                         }</Text>
-                    </View>
+                    </TouchableOpacity>
                 ))}
             </ScrollView>
         </View>

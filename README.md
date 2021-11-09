@@ -1,5 +1,5 @@
  <div align="center">
-<img src="assets/images/zalo-logo.jpg" style="border-radius:50%;border:1px solid black;" alt="SocialApp-rn" width="70">
+<img src="assets/images/zalo-logo.jpg" style="border-radius:50%;border:1px solid black;" alt="ZaloAppClone-ReactNative" width="70">
 
 # Zalo-App-Clone
 

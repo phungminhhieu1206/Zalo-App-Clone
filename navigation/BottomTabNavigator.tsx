@@ -33,7 +33,7 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Messages"
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint, headerShown: false }}>
       <BottomTab.Screen
         name="Messages"

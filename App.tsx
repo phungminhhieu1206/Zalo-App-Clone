@@ -18,6 +18,10 @@ export default function App() {
       <SafeAreaProvider>
         {/* <AuthNavigation colorScheme={colorScheme} /> */}
         <SignedInStack colorScheme={colorScheme} />
+
+
+        {/* Login - Signup - Logout */}
+
         {/* <SignedOutStack/> */}
         <StatusBar />
       </SafeAreaProvider>

@@ -66,15 +66,6 @@ const getTabOneBottomVisibility = (route) => {
     }
 }
 
-const getTabThreeBottomVisibility = (route) => {
-    console.log("route -->", route);
-    const routeName = route.name;
-    return {
-        display: 'flex'
-    }
-
-}
-
 // BottomTabOne - Messages
 const MessageStackNavigator = createStackNavigator();
 
@@ -94,7 +85,7 @@ const MessageNavigator = () => {
                 component={ChatRoomScreen}
                 options={{
                     headerTitle: ChatRoomHeader,
-                    headerLeft: null
+                    headerLeft: null,
                 }}
             />
             <MessageStackNavigator.Screen
@@ -122,6 +113,22 @@ const ContactNavigator = () => {
                 options={{
                     headerTitle: ContactHeader,
                     headerLeft: null
+                }}
+            />
+            <ContactStackNavigator.Screen
+                name="SearchFriend"
+                component={SearchFriend}
+                options={{
+                    headerTitle: SearchFriendHeader,
+                    headerLeft: null
+                }}
+            />
+            <ContactStackNavigator.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={{
+                    headerTitle: ChatRoomHeader,
+                    headerLeft: null,
                 }}
             />
         </ContactStackNavigator.Navigator>
@@ -155,6 +162,22 @@ const PostNavigator = () => {
                 component={CommentScreen}
                 options={{
                     headerTitle: CommentHeader,
+                    headerLeft: null
+                }}
+            />
+            <PostStackNavigator.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={{
+                    headerTitle: ChatRoomHeader,
+                    headerLeft: null,
+                }}
+            />
+            <PostStackNavigator.Screen
+                name="SearchFriend"
+                component={SearchFriend}
+                options={{
+                    headerTitle: SearchFriendHeader,
                     headerLeft: null
                 }}
             />
@@ -201,6 +224,22 @@ const UserNavigator = () => {
                     headerLeft: null
                 }}
             />
+            <UserStackNavigator.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={{
+                    headerTitle: ChatRoomHeader,
+                    headerLeft: null,
+                }}
+            />
+            <UserStackNavigator.Screen
+                name="SearchFriend"
+                component={SearchFriend}
+                options={{
+                    headerTitle: SearchFriendHeader,
+                    headerLeft: null
+                }}
+            />
         </UserStackNavigator.Navigator>
     );
 };
@@ -213,7 +252,7 @@ export const BottomNavigator = () => {
 
     return (
         <BottomTabNavigator.Navigator
-            initialRouteName="ChatHome"
+            // initialRouteName="ChatHome"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
                 headerShown: false

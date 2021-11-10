@@ -2,7 +2,7 @@ import React from 'react';
 // import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthNavigator, BottomNavigator } from './ZaloAppNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
+// import LinkingConfiguration from './LinkingConfiguration';
 
 // import StartupScreen from '../screens/StartupScreen';
 

@@ -26,7 +26,7 @@ const ChatRoomHeader = () => {
       marginLeft: -16,
       backgroundColor: '#019ff8',
     }}>
-      <TouchableOpacity onPress={() => navigation.navigate("ChatHome")}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Ionicons
           name="chevron-back"
           size={30}

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import {
     View,
     Text,
@@ -15,15 +15,39 @@ import * as Yup from 'yup'
 import Validator from 'email-validator'
 import { useNavigation } from '@react-navigation/core'
 
+import * as authActions from '../../api/auth'
+
 const LoginForm = () => {
 
     const navigation = useNavigation();
+    const [phonenumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const LoginFormSchema = Yup.object().shape({
-        email: Yup.string().email().required('An email is required'),
+        phonenumber: Yup.string().required().min(8, 'An phonenumber is required'),
         password: Yup.string().required().min(6, 'Your password has to have at least 8 characters'),
-    })
+    });
 
+    const inputChangeHandler = (text,inputField) => {
+        if(inputField === 1){
+            setPhoneNumber(text)
+        } else if(inputField === 2){
+            setPassword(text)
+        }
+    }
+
+    const handleSubmit = async () => {
+        try {
+            const mgs = await (authActions.signin(phonenumber, password));
+            console.log("loginsucc")
+            navigation.navigate('BottomNavigator')
+        } catch (error) {
+            console.log(error.message);
+            setIsLoading(false);
+        }
+    }
     const onLogin = (email, password) => {
         try {
             // await auth().signInWithEmailAndPassword(email, password)
@@ -50,21 +74,21 @@ const LoginForm = () => {
     return (
         <View style={styles.wrapper}>
             <Formik
-                initialValues={{ email: '', password: '' }}
-                onSubmit={values => {
-                    onLogin(values.email, values.password)
-                    console.log(values);
-                }}
+                initialValues={{ phonenumber: '', password: '' }}
+                // onSubmit={values => {
+                //     onLogin(values.email, values.password)
+                //     console.log(values);
+                // }}
                 validationSchema={LoginFormSchema}
                 validateOnMount={true}
             >
-                {({ handleBlur, handleChange, handleSubmit, values, errors, isValid }) => (
+                {({ handleBlur, handleChange, values, errors, isValid }) => (
                     <Fragment>
                         <View
                             style={[
                                 styles.inputFiled,
                                 {
-                                    borderColor: values.email.length < 1 || Validator.validate(values.email) ? '#ccc' : 'red',
+                                    borderColor: values.phonenumber.length < 1 || Validator.validate(values.phonenumber) ? '#ccc' : 'red',
                                 },
                             ]}
                         >
@@ -72,11 +96,11 @@ const LoginForm = () => {
                                 placeholderTextColor='#444'
                                 placeholder='Phone number, username or email'
                                 autoCapitalize='none'
-                                keyboardType='email-address'
-                                textContentType='emailAddress'
-                                onChangeText={handleChange('email')}
+                                keyboardType='phone-number'
+                                textContentType='phoneNumber'
+                                onChangeText={(text) => inputChangeHandler(text,1)}
                                 onBlur={handleBlur('email')}
-                                value={values.email}
+                                value={phonenumber}
                             />
                         </View>
 
@@ -95,9 +119,9 @@ const LoginForm = () => {
                                 autoCorrect={false}
                                 secureTextEntry={true}
                                 textContentType='password'
-                                onChangeText={handleChange('password')}
+                                onChangeText={(text) => inputChangeHandler(text,2)}
                                 onBlur={handleBlur('password')}
-                                value={values.password}
+                                value={password}
                             />
                         </View>
                         <View style={{ alignItems: 'flex-end', marginBottom: 30 }}>
@@ -105,9 +129,9 @@ const LoginForm = () => {
                         </View>
                         <Pressable
                             titleSize={20}
-                            style={styles.button(isValid)}
+                            style={styles.button(true)}
                             onPress={handleSubmit}
-                            disabled={!isValid}
+                            // disabled={!isValid}
                         >
                             <Text style={styles.buttonText}>Log in</Text>
                         </Pressable>

@@ -28,20 +28,34 @@ import NewPostScreen from '../components/Post/NewPostScreen';
 import NewPostHeader from './HeaderNavigator/NewPostHeader';
 import CommentScreen from '../components/Post/CommentScreen';
 import CommentHeader from './HeaderNavigator/CommentHeader';
+import SignupScreen from '../screens/SignupScreen';
+import LoginScreen from '../screens/LoginScreen';
+
 
 const AuthStackNavigator = createNativeStackNavigator();
 
 export const AuthNavigator = () => {
     return (
         <AuthStackNavigator.Navigator
-            // initialRouteName='LoginScreen'
+            initialRouteName='LoginScreen'
             screenOptions={{ headerShown: false }}
         >
             <AuthStackNavigator.Screen
-                name="Auth"
-                component={AuthScreen}
+                name="LoginScreen"
+                component={LoginScreen}
                 options={{ headerShown: false }}
             />
+             <AuthStackNavigator.Screen
+                name="BottomNavigator"
+                component={BottomNavigator}
+                options={{ headerShown: false }}
+            />
+             <AuthStackNavigator.Screen
+                name="SignupScreen"
+                component={SignupScreen}
+                options={{ headerShown: false }}
+            />
+            
             {/* <AuthStackNavigator.Screen
                 name="ForgotPassword"
                 component={ForgotPasswordScreen}

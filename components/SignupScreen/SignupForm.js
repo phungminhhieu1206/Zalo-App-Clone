@@ -14,23 +14,42 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validator from 'email-validator'
 
+import * as authActions from '../../api/auth'
+
 import { useNavigation } from '@react-navigation/core'
 
 const SignupForm = () => {
 
     const navigation = useNavigation();
+    const [phonenumber, setPhoneNumber] = useState("");
+    const [username, setUserName] = useState("");
+    const [password, setPassword] = useState("");
 
     const SignupFormSchema = Yup.object().shape({
-        email: Yup.string().email().required('An email is required'),
+        phonenumber: Yup.string().required().min(8, 'An phonenumber is required'),
         username: Yup.string().required().min(2, 'A username is required'),
         password: Yup.string().required().min(6, 'Your password has to have at least 8 characters'),
     })
 
-    // const getRandomProfilePicture = async () => {
-    //     const response = await fetch('https://randomuser.me/api')
-    //     const data = await response.json()
-    //     return data.results[0].picture.large
-    // }
+    const inputChangeHandler = (text,inputField) => {
+        if(inputField === 1){
+            setPhoneNumber(text)
+        } else if(inputField === 2){
+            setUserName(text)
+        } else if(inputField === 3){
+            setPassword(text)
+        }
+    }
+    const handleSubmit = async () => {
+        try {
+            const mgs = await (authActions.signup(phonenumber, username, password));
+            console.log("signup succ")
+            navigation.goBack();
+            
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     const onSignup = (email, password) => {
         try {
@@ -48,34 +67,34 @@ const SignupForm = () => {
     return (
         <View style={styles.wrapper}>
             <Formik
-                initialValues={{ email: '', username: '', password: '' }}
-                onSubmit={values => {
-                    onSignup(values.email, values.password)
-                    // console.log(values)
-                }}
+                initialValues={{ phonenumber: '', username: '', password: '' }}
+                // onSubmit={values => {
+                //     onSignup(values.email, values.password)
+                //     // console.log(values)
+                // }}
                 validationSchema={SignupFormSchema}
                 validateOnMount={true}
             >
-                {({ handleBlur, handleChange, handleSubmit, values, errors, isValid }) => (
+                {({ handleBlur, handleChange, values, errors, isValid }) => (
                     <Fragment>
                         <View
                             style={[
                                 styles.inputFiled,
                                 {
-                                    borderColor: values.email.length < 1 || Validator.validate(values.email) ? '#ccc' : 'red',
+                                    borderColor: values.phonenumber.length < 1 || Validator.validate(values.phonenumber) ? '#ccc' : 'red',
                                 },
                             ]}
                         >
                             <TextInput
                                 placeholderTextColor='#444'
-                                placeholder='Email'
+                                placeholder='Phonenumber'
                                 autoCapitalize='none'
-                                keyboardType='email-address'
-                                textContentType='emailAddress'
+                                keyboardType='phonenumber'
+                                textContentType='phonenumber'
                                 autoFocus={true}
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur('email')}
-                                value={values.email}
+                                onChangeText={(text) => inputChangeHandler(text,1)}
+                                onBlur={handleBlur('phonenumber')}
+                                value={phonenumber}
                             />
                         </View>
                         <View
@@ -91,9 +110,9 @@ const SignupForm = () => {
                                 placeholder='Username'
                                 autoCapitalize='none'
                                 textContentType='username'
-                                onChangeText={handleChange('username')}
+                                onChangeText={(text) => inputChangeHandler(text,2)}
                                 onBlur={handleBlur('username')}
-                                value={values.username}
+                                value={username}
                             />
                         </View>
                         <View
@@ -111,16 +130,16 @@ const SignupForm = () => {
                                 autoCorrect={false}
                                 secureTextEntry={true}
                                 textContentType='password'
-                                onChangeText={handleChange('password')}
+                                onChangeText={(text) => inputChangeHandler(text,3)}
                                 onBlur={handleBlur('password')}
-                                value={values.password}
+                                value={password}
                             />
                         </View>
                         <Pressable
                             titleSize={20}
-                            style={styles.button(isValid)}
+                            style={styles.button(true)}
                             onPress={handleSubmit}
-                            disabled={!isValid}
+                            // disabled={!isValid}
                         >
                             <Text style={styles.buttonText}>Sign Up</Text>
                         </Pressable>

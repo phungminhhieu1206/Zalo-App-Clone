@@ -67,15 +67,10 @@ export const editPost = async function (described, images, id) {
             Authorization: `Bearer ${token1}`
 
         },
-
-
         body: JSON.stringify(data)
-
     });
     console.log("created")
-
     const resData = await response.json();
-    // console.log(resData)
     console.log("doneapi")
     if (resData.error) {
         throw new Error(resData.error);

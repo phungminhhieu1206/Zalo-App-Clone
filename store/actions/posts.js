@@ -27,7 +27,7 @@ export const ADD_COMMENT_TEMP = 'ADD_COMMENT_TEMP';
 //         })
 //     }
 // };
-export const createPost = (postData) => ({
+export const addPost = (postData) => ({
     type: CREATE_POST,
     postData
     

@@ -12,7 +12,7 @@ export const reportPost = async function (subject, details, postId) {
 
     console.log(JSON.stringify(data))
 
-    const response = await fetch(`${ENV.apiUrl}/create/${postId}`, {
+    const response = await fetch(`${ENV.apiUrl}/postReport/create/${postId}`, {
         method: 'POST',
         headers: {
             'Content-Type': "application/json",

@@ -34,6 +34,7 @@ export const setRequest = async function (user_id) {
     return resData;
 
 };
+
 export const getRequest = async function (user_id) {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
@@ -68,6 +69,7 @@ export const getRequest = async function (user_id) {
     return resData;
 
 };
+
 export const setAccept = async function (user_id, is_accept) {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
@@ -103,6 +105,7 @@ export const setAccept = async function (user_id, is_accept) {
     return resData;
 
 };
+
 export const setRemoveFriend = async function (user_id) {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
@@ -135,6 +138,7 @@ export const setRemoveFriend = async function (user_id) {
     return resData;
 
 };
+
 export const listFriends = async function () {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;

@@ -47,7 +47,7 @@ const FormikPostUploader = () => {
             var images = await convertImageToBase64(blob);
     
             const dataResult = await (postsActions.createPost(described, images));
-
+            dispatch(addPost(dataResult))
             console.log("post succ");
             let postData = {
                 _id: dataResult.data._id,

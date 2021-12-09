@@ -16,10 +16,13 @@ import Validator from 'email-validator'
 import { useNavigation } from '@react-navigation/core'
 
 import * as authActions from '../../api/auth'
+import { useDispatch } from 'react-redux'
+import { authenticate } from '../../store/actions/auth'
 
 const LoginForm = () => {
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [phonenumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +43,8 @@ const LoginForm = () => {
 
     const handleSubmit = async () => {
         try {
-            const mgs = await (authActions.signin(phonenumber, password));
+            const resData = await (authActions.signin(phonenumber, password));
+            dispatch(authenticate(resData.data.username, resData.token))
             console.log("loginsucc")
             navigation.navigate('BottomNavigator')
         } catch (error) {

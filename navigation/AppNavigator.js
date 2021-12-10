@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthNavigator, BottomNavigator } from './ZaloAppNavigator';
+import { AuthNavigator, BottomNavigator, ZaloAppNavigator } from './ZaloAppNavigator';
 // import LinkingConfiguration from './LinkingConfiguration';
 
 // import StartupScreen from '../screens/StartupScreen';
@@ -18,7 +18,7 @@ const AppNavigator = (props) => {
     return (
         <NavigationContainer>
             {/* Nếu đã đăng nhập thành công hiện giao diện sau đăng nhập */}
-            {true && <BottomNavigator />}
+            {true && <ZaloAppNavigator />}
 
             {/* Chưa đăng nhập và đã thử tự động đăng nhập xem được không thì hiện màn hình login */}
             {/* { !isAuth && didTryAutoLogin && <AuthNavigator />} */}

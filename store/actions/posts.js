@@ -17,83 +17,29 @@ export const addPost = (postData) => ({
     postData
     
 });
-
-
-// export const createPost = async function(described) {
-   
-//         const token1 = JSON.parse(await AsyncStorage.getItem('token')).token
-//         const token =  JSON.stringify(token1)
-//         // token =  JSON.stringify(token)
-       
-//         // const test = token.split(':')[1]
-//         console.log(`Bearer ${token1}`)
-//         // const userId = getState().auth.user._id;
-//         // const postData = {described}
-//         console.log(described)
-//         // console.log(JSON.stringify(postData))
-//         // any async code
-//         const response = await fetch(`${ENV.apiUrl}/posts/create`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': "application/json",
-//                 Authorization: `Bearer ${token1}`
-                
-//             },
-        
-//             body: JSON.stringify({
-//                 described: described
-//             })
-//         });
-//         console.log("created")
-        
-//         const resData = await response.json();
-//         console.log(resData)
-//         if(resData.error){
-//             throw new Error(resData.error);
-//         }
-
-//         // dispatch({
-//         //     type: CREATE_POST,
-//         //     postData: {
-//         //         // _id: resData._id,
-//         //         // title: resData.title,
-//         //         body: resData.body,
-//         //         // comments: resData.comments,
-//         //         // created: new Date(resData.created),
-//         //         // likes: resData.likes,
-//         //         // postedBy: {
-//         //         //     _id: resData.postedBy._id,
-//         //         //     name: resData.postedBy.name
-//         //         // }
-//         //     }
-//         // });
-//         return resData;
+export const deletePost = (postId) => ({
+    type: DELETE_POST,
+    postId
     
-// };
+});
+export const updatePost = (updatedPostData) => ({
+    type: UPDATE_POST,
+    updatedPostData
+    
+});
+export const likePost = (userId, postId) => ({
+    type: LIKE_POST,
+    userId,
+    postId
+    
+});
+export const unLikePost = (userId, postId) => ({
+    type: LIKE_POST,
+    userId,
+    postId
+    
+});
 
-
-// export const deletePost = (postId) => {
-//     return async (dispatch, getState) => {
-//         const token = getState().auth.token;
-//         const response = await fetch(`${ENV.apiUrl}/post/${postId}`, {
-//             method: "DELETE",
-//             headers: {
-//                 Accept: "application/json",
-//                 "Content-Type": "application/json",
-//                 Authorization: `Bearer ${token}`
-//             }
-//         })
-
-//         const resData = await response.json();
-//         if(resData.error){
-//             throw new Error(resData.error);
-//         }
-//         dispatch({
-//             type: DELETE_POST,
-//             pid: postId
-//         })
-//     }
-// };
 
 
 // export const updatePost = (postId,title, body, base64Data, imageType) => {

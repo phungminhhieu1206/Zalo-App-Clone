@@ -61,6 +61,7 @@ export const signup = async function (phonenumber, password, username) {
     return resData.data;
 };
 
+
 export const edit = async function (avatar, cover_image) {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;

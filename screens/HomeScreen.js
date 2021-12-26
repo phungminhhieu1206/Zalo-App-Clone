@@ -19,13 +19,10 @@ const HomeScreen = () => {
 
     const dispatch = useDispatch();
     const [error, setError] = useState();
-    const [posts, setPosts] = useSelector(state => state.posts.allPosts);
+    const posts = useSelector(state => state.posts.allPosts);
 
-    const loadPosts = 
-    // useCallback
-    // (
-        async () => {
-        setError(null);
+    const loadPosts = useCallback (async () => {
+        // setError(null);
         try {
             console.log("start get");
             await dispatch(postsActions.fetchPosts());
@@ -35,27 +32,37 @@ const HomeScreen = () => {
             setError(err.message);
         }
     }
-    // , [dispatch, setError]
-    // )
+    , [dispatch, setError]
+    )
 
-    useEffect( () => {
+    useEffect(() => {
+
+        // const loadPosts = async () => {
+        //     try {
+
+        //         console.log("start get");
+        //         await dispatch(postsActions.fetchPosts());
+        //         console.log("res");
+        //     } catch (err) {
+        //         console.log(err);;
+        //     }
+        // }
         loadPosts();
-        console.log(posts);
+
+      
     }, [dispatch, loadPosts])
-    // console.log(posts);
+    // console.log(posts[1].author.username);
+      console.log(posts);
     return (
         <SafeAreaView style={styles.container}>
 
             <ScrollView>
-                <Text>
-                    {/* {posts[1].author.username} */}
-                    </Text>
+
                 <Stories />
-                <Stories />
-                {/* <NewPost />
-                {POSTS.map((post, index) => (
+                <NewPost />
+                {posts.map((post, index) => (
                     <Post post={post} key={index} />
-                ))} */}
+                ))}
             </ScrollView>
         </SafeAreaView>
     )

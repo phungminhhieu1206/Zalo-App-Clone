@@ -7,40 +7,41 @@ import {
     Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
-import moment from 'moment'
+import moment from 'moment';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ChatRoomItem({ chatRoom }) {
 
-    const user = chatRoom.users[1];
+    // const user = chatRoom.users[1];
 
     const navigation = useNavigation();
 
     const onPressHandle = () => {
         // console.warn('pressed on: ', user.name);
         
-        navigation.navigate('ChatRoom', { id: chatRoom.id });
+        navigation.navigate('ChatRoom', { id: chatRoom.idChat });
         // console.warn(chatRoom.id);
     }
 
     const time = moment(chatRoom.lastMessage?.createdAt).from(moment());
-
+    const avata = 'https://reactnative.dev/img/tiny_logo.png';
     return (
         <Pressable onPress={onPressHandle} style={styles.container}>
             <View style={styles.avatar}>
                 <Image
-                    source={{ uri: user.imageUri }}
+                    source={{ uri: avata }}
                     style={styles.image}
                 />
-                {chatRoom.newMessages ? <View style={styles.badgeContainer}>
+                {/* {chatRoom.newMessages ? <View style={styles.badgeContainer}>
                     <Text style={styles.badgeText}>{chatRoom.newMessages}</Text>
-                </View> : null}
+                </View> : null} */}
             </View>
             <View style={styles.rightContainer}>
                 <View style={styles.row}>
-                    <Text numberOfLines={1} style={styles.name}>{user.name}</Text>
-                    <Text numberOfLines={1} style={styles.time}>{time}</Text>
+                    <Text numberOfLines={1} style={styles.name}>{chatRoom.dataUser.username}</Text>
+                    <Text numberOfLines={1} style={styles.time}>{chatRoom.time}</Text>
                 </View>
-                <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastMessage.content}</Text>
+                {/* <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastMessage.content}</Text> */}
             </View>
         </Pressable >
     );

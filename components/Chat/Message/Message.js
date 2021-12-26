@@ -5,11 +5,12 @@ import {
     View 
 } from 'react-native'
 
-const myID = 'u1';
+// const myID = 'u1';
 
 export default function Message({ messages }) {
 
-    const isMe = messages.user.id === myID;
+    const myID = JSON.parse (AsyncStorage.getItem('user')).user;
+    const isMe = messages.user._id === myID;
 
     return (
         <View style={[styles.container, isMe ? styles.rightContainer : styles.leftContainer]}>

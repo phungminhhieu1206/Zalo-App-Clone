@@ -226,7 +226,7 @@ const Caption = ({ post }) => (
             paddingBottom: 10,
             fontWeight: '400',
             fontStyle: 'italic'
-        }}>{post.caption}</Text>
+        }}>{post.described}</Text>
     </View>
 )
 

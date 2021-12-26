@@ -8,6 +8,8 @@ import AppNavigator from './navigation/AppNavigator';
 
 import authReducer from './store/reducers/auth';
 import postsReducer from './store/reducers/posts';
+import chatReducer from './store/reducers/chat';
+
 import commentReducer from './store/reducers/comment';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -18,7 +20,8 @@ import ReduxThunk from 'redux-thunk';
 const rootReducer = combineReducers({
   auth: authReducer,
   posts: postsReducer,
-  comment: commentReducer
+  comment: commentReducer,
+  chat: chatReducer
 });
 
 const store = createStore(

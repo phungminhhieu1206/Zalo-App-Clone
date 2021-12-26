@@ -55,7 +55,7 @@ const ContactHeader = () => {
                     }}
                 >Search friends, messages...</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
+            <TouchableOpacity onPress={() => console.warn('clicked qrcode of contact')}>
                 <MaterialCommunityIcons
                     name="qrcode-scan"
                     size={22}
@@ -65,7 +65,7 @@ const ContactHeader = () => {
                     }}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.warn('clicked plus of chat room')}>
+            <TouchableOpacity onPress={() => console.warn('clicked plus of contact')}>
                 <AntDesign
                     name="plus"
                     size={25}

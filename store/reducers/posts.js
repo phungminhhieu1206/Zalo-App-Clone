@@ -2,9 +2,9 @@ import { SET_POSTS, CREATE_POST, DELETE_POST, UPDATE_POST, LIKE_POST, UNLIKE_POS
 
 const initialState = {
     allPosts: [
-        {
-            name : 'vu',
-        }
+        // {
+        //     name : 'vu',
+        // }
     ],
 };
 

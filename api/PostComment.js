@@ -1,4 +1,5 @@
 import ENV from '../env';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
 export const listComment = async function (postId) {
 

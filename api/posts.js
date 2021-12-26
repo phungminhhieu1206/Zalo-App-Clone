@@ -98,16 +98,17 @@ export const fetchPosts =  () => {
         console.log("getdone")
         const resData = await response.json();
         const data = resData.data
-        console.log(data);
+        // console.log(data);
         
-        if (resData.error) {
-            throw new Error(resData.error);
-        }
+        // if (resData.error) {
+        //     throw new Error(resData.error);
+        // }
+       
         dispatch({
             type: SET_POSTS,
             posts: data
         })
-       
+        
    }
 
     // console.log(userId);

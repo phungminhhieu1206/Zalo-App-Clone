@@ -30,6 +30,7 @@ export const signin = async function (phonenumber, password) {
    
     // console.log(resData.token);
     saveDataToStorage(resData.token);
+    saveUserToStorage(resData.data.id);
     console.log("done api")
     return resData;
 };
@@ -104,7 +105,7 @@ export const show = async function (id) {
     console.log("suss");
     
     const resData = await response.json();
-    console.log(resData);
+    // console.log(resData);
 
     if(resData.error){
         throw new Error(resData.error);
@@ -225,5 +226,10 @@ export const searchUser = async function ( keyword) {
 const saveDataToStorage = (token) => {
     AsyncStorage.setItem('token', JSON.stringify({
         token,
+    }));
+}
+const saveUserToStorage = (user) => {
+    AsyncStorage.setItem('user', JSON.stringify({
+        user,
     }));
 }

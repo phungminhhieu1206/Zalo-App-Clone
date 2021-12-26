@@ -32,6 +32,8 @@ import SignupScreen from '../screens/SignupScreen';
 import LoginScreen from '../screens/LoginScreen';
 
 
+
+// AuthNavigator
 const AuthStackNavigator = createNativeStackNavigator();
 
 export const AuthNavigator = () => {
@@ -45,9 +47,14 @@ export const AuthNavigator = () => {
                 component={LoginScreen}
                 options={{ headerShown: false }}
             />
-             <AuthStackNavigator.Screen
+             {/* <AuthStackNavigator.Screen
                 name="BottomNavigator"
                 component={BottomNavigator}
+                options={{ headerShown: false }}
+            /> */}
+              <AuthStackNavigator.Screen
+                name="BottomNavigator"
+                component={ZaloAppNavigator}
                 options={{ headerShown: false }}
             />
              <AuthStackNavigator.Screen
@@ -65,217 +72,78 @@ export const AuthNavigator = () => {
     )
 }
 
-const getTabOneBottomVisibility = (route) => {
-    console.log("route -->", route);
-    // console.log("navigation -->", navigation);
-    const routeName = route.name;
-    if (routeName === 'Messages') {
-        return {
-            display: 'flex'
-        }
-    } else {
-        return {
-            display: 'none'
-        }
-    }
+const TabOneStack = createStackNavigator();
+
+function TabOneNavigator() {
+  return (
+    <TabOneStack.Navigator screenOptions={{ headerShown: true }}>
+      <TabOneStack.Screen
+        name="TabOneScreen"
+        component={ChatHomeScreen}
+        options={{ headerTitle: ChatHomeHeader }}
+      />
+    </TabOneStack.Navigator>
+  );
 }
 
-// BottomTabOne - Messages
-const MessageStackNavigator = createStackNavigator();
+const TabTwoStack = createStackNavigator();
 
-const MessageNavigator = () => {
-    return (
-        <MessageStackNavigator.Navigator>
-            <MessageStackNavigator.Screen
-                name="ChatHome"
-                component={ChatHomeScreen}
-                options={{
-                    headerTitle: ChatHomeHeader,
-                    headerLeft: null,
-                }}
-            />
-            <MessageStackNavigator.Screen
-                name="ChatRoom"
-                component={ChatRoomScreen}
-                options={{
-                    headerTitle: ChatRoomHeader,
-                    headerLeft: null,
-                }}
-            />
-            <MessageStackNavigator.Screen
-                name="SearchFriend"
-                component={SearchFriend}
-                options={{
-                    headerTitle: SearchFriendHeader,
-                    headerLeft: null
-                }}
-            />
-        </MessageStackNavigator.Navigator>
-    );
-};
+function TabTwoNavigator() {
+  return (
+    <TabTwoStack.Navigator screenOptions={{ headerShown: true }}>
+      <TabTwoStack.Screen
+        name="TabTwoScreen"
+        component={ContactScreen}
+        options={{ headerTitle: ContactHeader }}
+      />
+    </TabTwoStack.Navigator>
+  );
+}
 
+const TabThreeStack = createStackNavigator();
 
-// BottomTabTwo - Contact
-const ContactStackNavigator = createStackNavigator();
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator screenOptions={{ headerShown: true }}>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: HomeHeader }}
+      />
+    </TabThreeStack.Navigator>
+  );
+}
 
-const ContactNavigator = () => {
-    return (
-        <ContactStackNavigator.Navigator>
-            <ContactStackNavigator.Screen
-                name="Contact"
-                component={ContactScreen}
-                options={{
-                    headerTitle: ContactHeader,
-                    headerLeft: null
-                }}
-            />
-            <ContactStackNavigator.Screen
-                name="SearchFriend"
-                component={SearchFriend}
-                options={{
-                    headerTitle: SearchFriendHeader,
-                    headerLeft: null
-                }}
-            />
-            <ContactStackNavigator.Screen
-                name="ChatRoom"
-                component={ChatRoomScreen}
-                options={{
-                    headerTitle: ChatRoomHeader,
-                    headerLeft: null,
-                }}
-            />
-        </ContactStackNavigator.Navigator>
-    );
-};
+const TabFourStack = createStackNavigator();
 
-// BottomTabThree - TimeLine
-const PostStackNavigator = createStackNavigator();
+function TabFourNavigator() {
+  return (
+    <TabFourStack.Navigator screenOptions={{ headerShown: true }}>
+      <TabFourStack.Screen
+        name="TabFourScreen"
+        component={MyScreen}
+        options={{ headerTitle: MeHeader }}
+      />
+    </TabFourStack.Navigator>
+  );
+}
 
-const PostNavigator = () => {
-    return (
-        <PostStackNavigator.Navigator>
-            <PostStackNavigator.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{
-                    headerTitle: HomeHeader,
-                    headerLeft: null
-                }}
-            />
-            <PostStackNavigator.Screen
-                name="NewPost"
-                component={NewPostScreen}
-                options={{
-                    headerTitle: NewPostHeader,
-                    headerLeft: null
-                }}
-            />
-            <PostStackNavigator.Screen
-                name="Comment"
-                component={CommentScreen}
-                options={{
-                    headerTitle: CommentHeader,
-                    headerLeft: null
-                }}
-            />
-            <PostStackNavigator.Screen
-                name="ChatRoom"
-                component={ChatRoomScreen}
-                options={{
-                    headerTitle: ChatRoomHeader,
-                    headerLeft: null,
-                }}
-            />
-            <PostStackNavigator.Screen
-                name="SearchFriend"
-                component={SearchFriend}
-                options={{
-                    headerTitle: SearchFriendHeader,
-                    headerLeft: null
-                }}
-            />
-        </PostStackNavigator.Navigator>
-    );
-};
-
-
-// BottomTabFour - Me
-const UserStackNavigator = createStackNavigator();
-
-const UserNavigator = () => {
-    return (
-        <UserStackNavigator.Navigator>
-            <UserStackNavigator.Screen
-                name="My"
-                component={MyScreen}
-                options={{
-                    headerTitle: MeHeader,
-                    headerLeft: null
-                }}
-            />
-            <UserStackNavigator.Screen
-                name="MyChannel"
-                component={MyChannel}
-                options={{
-                    headerTitle: MyChannelHeader,
-                    headerLeft: null
-                }}
-            />
-            <UserStackNavigator.Screen
-                name="MyChannelSetup"
-                component={MyChannelSetup}
-                options={{
-                    headerTitle: MyChannelSetupHeader,
-                    headerLeft: null
-                }}
-            />
-            <UserStackNavigator.Screen
-                name="MyChannelSetting"
-                component={MyChannelSetting}
-                options={{
-                    headerTitle: MyChannelSettingHeader,
-                    headerLeft: null
-                }}
-            />
-            <UserStackNavigator.Screen
-                name="ChatRoom"
-                component={ChatRoomScreen}
-                options={{
-                    headerTitle: ChatRoomHeader,
-                    headerLeft: null,
-                }}
-            />
-            <UserStackNavigator.Screen
-                name="SearchFriend"
-                component={SearchFriend}
-                options={{
-                    headerTitle: SearchFriendHeader,
-                    headerLeft: null
-                }}
-            />
-        </UserStackNavigator.Navigator>
-    );
-};
-
-
+// BOTTOM TAB
 const BottomTabNavigator = createBottomTabNavigator();
 
-export const BottomNavigator = () => {
-    const colorScheme = useColorScheme();
+const BottomNavigator = () => {
 
     return (
         <BottomTabNavigator.Navigator
             // initialRouteName="ChatHome"
             screenOptions={{
-                tabBarActiveTintColor: Colors[colorScheme].tint,
                 headerShown: false
             }}
         >
             <BottomTabNavigator.Screen
                 name="Messages"
-                component={MessageNavigator}
-                options={({ route }) => ({
+                component={TabOneNavigator}
+                options={{
                     tabBarIcon: ({ color }) => (
                         < MaterialCommunityIcons
                             name="chat-processing"
@@ -283,14 +151,12 @@ export const BottomNavigator = () => {
                             style={{ marginBottom: -3 }}
                             color={color}
                         />
-                    ),
-                    tabBarStyle: getTabOneBottomVisibility(route),
-                    tabBarLabel: 'Messages',
-                })}
+                    )
+                }}
             />
             <BottomTabNavigator.Screen
                 name="Contacts"
-                component={ContactNavigator}
+                component={TabTwoNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialIcons
@@ -299,13 +165,12 @@ export const BottomNavigator = () => {
                             style={{ marginBottom: -3 }}
                             color={color}
                         />
-                    ),
-
+                    )
                 }}
             />
             <BottomTabNavigator.Screen
                 name="Timeline"
-                component={PostNavigator}
+                component={TabThreeNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons
@@ -314,12 +179,12 @@ export const BottomNavigator = () => {
                             style={{ marginBottom: -3 }}
                             color={color}
                         />
-                    ),
+                    )
                 }}
             />
             <BottomTabNavigator.Screen
                 name="Me"
-                component={UserNavigator}
+                component={TabFourNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Ionicons
@@ -328,9 +193,107 @@ export const BottomNavigator = () => {
                             style={{ marginBottom: -3 }}
                             color={color}
                         />
-                    ),
+                    )
                 }}
             />
         </BottomTabNavigator.Navigator>
     );
 }
+
+// ZaloAppNavigator
+const ZaloStackNavigator = createStackNavigator();
+
+export const ZaloAppNavigator = () => {
+    return (
+        <ZaloStackNavigator.Navigator initialRouteName='ChatHome'>
+            <ZaloStackNavigator.Screen
+                name="ChatHome"
+                component={BottomNavigator}
+                options={{
+                    headerLeft: null,
+                    headerShown: false
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={{
+                    headerTitle: ChatRoomHeader,
+                    headerLeft: null,
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="SearchFriend"
+                component={SearchFriend}
+                options={{
+                    headerTitle: SearchFriendHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="Contact"
+                component={ContactScreen}
+                options={{
+                    headerTitle: ContactHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    headerTitle: HomeHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="NewPost"
+                component={NewPostScreen}
+                options={{
+                    headerTitle: NewPostHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="Comment"
+                component={CommentScreen}
+                options={{
+                    headerTitle: CommentHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="My"
+                component={MyScreen}
+                options={{
+                    headerTitle: MeHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="MyChannel"
+                component={MyChannel}
+                options={{
+                    headerTitle: MyChannelHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="MyChannelSetup"
+                component={MyChannelSetup}
+                options={{
+                    headerTitle: MyChannelSetupHeader,
+                    headerLeft: null
+                }}
+            />
+            <ZaloStackNavigator.Screen
+                name="MyChannelSetting"
+                component={MyChannelSetting}
+                options={{
+                    headerTitle: MyChannelSettingHeader,
+                    headerLeft: null
+                }}
+            />
+        </ZaloStackNavigator.Navigator>
+    );
+};

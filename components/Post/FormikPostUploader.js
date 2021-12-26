@@ -10,6 +10,8 @@ import * as postsActions from '../../api/posts'
 import { useDispatch } from 'react-redux'
 import { addPost } from '../../store/actions/posts'
 
+// import * as postsActions from '../../api/posts';
+
 const PLACEHOLDER_IMG = 'https://www.brownweinraub.com/wp-content/uploads/2017/09/placeholder.jpg'
 
 const uploadPostSchema = Yup.object().shape({
@@ -48,21 +50,22 @@ const FormikPostUploader = () => {
     
             const dataResult = await (postsActions.createPost(described, images));
             dispatch(addPost(dataResult))
+            await (postsActions.fetchPosts());
             console.log("post succ");
-            let postData = {
-                _id: dataResult.data._id,
-                // title: dataResult.title,
-                body: dataResult.data.described,
-                comments: dataResult.data.countComments,
-                imageUrl: dataResult.data.images,
-                created: new Date(dataResult.data.createdAt),
-                likes: dataResult.data.like,
-                isLike: dataResult.data.isLike,
-                postedBy: {
-                    _id: dataResult.data.auth
-                }
-            }
-            dispatch(addPost(postData));
+            // let postData = {
+            //     _id: dataResult.data._id,
+            //     // title: dataResult.title,
+            //     body: dataResult.data.described,
+            //     comments: dataResult.data.countComments,
+            //     imageUrl: dataResult.data.images,
+            //     created: new Date(dataResult.data.createdAt),
+            //     likes: dataResult.data.like,
+            //     isLike: dataResult.data.isLike,
+            //     postedBy: {
+            //         _id: dataResult.data.auth
+            //     }
+            // }
+            // dispatch(addPost(postData));
             
             navigation.goBack();
         } catch (error) {

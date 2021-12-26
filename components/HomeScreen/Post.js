@@ -13,14 +13,15 @@ import {
     SimpleLineIcons
 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
+// import avata from "../../assets/images/zalo-logo.png";
 
 const Post = ({ post }) => {
     // console.log(post);
-
+   
     return (
         <View style={styles.container}>
             <PostHeader post={post} />
-            {post.caption ? <Caption post={post} /> : null}
+            {post.described ? <Caption post={post} /> : null}
             <PostImage post={post} />
             <PostFooter post={post} />
             {/* <CommentSection post={post} /> */}
@@ -29,7 +30,7 @@ const Post = ({ post }) => {
         </View>
     )
 }
-
+const avata = 'https://reactnative.dev/img/tiny_logo.png';
 const PostHeader = ({ post }) => (
     <View
         style={{
@@ -44,7 +45,7 @@ const PostHeader = ({ post }) => (
             alignItems: 'center'
         }}>
             <Image
-                source={{ uri: post.profile_picture }}
+                source={{ uri: avata }}
                 style={styles.profile_picture}
             />
             <View style={{
@@ -58,7 +59,7 @@ const PostHeader = ({ post }) => (
                         fontSize: 16
                     }}
                 >
-                    {post.user}
+                    {post.author.username}
                 </Text>
                 <Text
                     numberOfLines={1}
@@ -66,7 +67,7 @@ const PostHeader = ({ post }) => (
                         color: 'grey',
                         fontSize: 12
                     }}
-                >Today at 11:22</Text>
+                >{post.createdAt} </Text>
             </View>
 
         </View>
@@ -83,7 +84,7 @@ const PostImage = ({ post }) => (
         height: 450,
     }}>
         <Image
-            source={{ uri: post.imageUrl }}
+            source={{ uri: avata }}
             style={{
                 height: '100%',
                 resizeMode: 'cover',
@@ -96,7 +97,8 @@ const PostImage = ({ post }) => (
 const PostFooter = ({ post }) => {
     const navigation = useNavigation();
 
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(post.isLike);
+    const [countCMT, setCountCMT] = useState(post.countComments);
 
     const onPressWhiteLike = () => {
         setLiked(true);
@@ -147,7 +149,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.comments.length}</Text>
+                    }}>{countCMT}</Text>
             </View>
             <TouchableOpacity
                 onPress={onPressComment}

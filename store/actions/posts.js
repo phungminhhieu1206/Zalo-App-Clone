@@ -34,7 +34,7 @@ export const likePost = (userId, postId) => ({
     
 });
 export const unLikePost = (userId, postId) => ({
-    type: LIKE_POST,
+    type: UNLIKE_POST,
     userId,
     postId
     

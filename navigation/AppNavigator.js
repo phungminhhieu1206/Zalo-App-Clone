@@ -18,10 +18,11 @@ const AppNavigator = (props) => {
     return (
         <NavigationContainer>
             {/* Nếu đã đăng nhập thành công hiện giao diện sau đăng nhập */}
-            {isAuth && <BottomNavigator />}
+            {/* {isAuth && <BottomNavigator />} */}
+            {true && <BottomNavigator />}
 
             {/* Chưa đăng nhập và đã thử tự động đăng nhập xem được không thì hiện màn hình login */}
-            { !isAuth && !didTryAutoLogin && <AuthNavigator />}
+            {/* { !isAuth && !didTryAutoLogin && <AuthNavigator />} */}
 
             {/* Chưa đăng nhập và chưa thử đăng nhập thì hiện màn hình loading */}
             {/* { !isAuth && !didTryAutoLogin && <StartupScreen />} */}

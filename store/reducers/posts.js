@@ -1,7 +1,11 @@
 import { SET_POSTS, CREATE_POST, DELETE_POST, UPDATE_POST, LIKE_POST, UNLIKE_POST, COMMENT_POST, UNCOMMENT_POST, ADD_COMMENT_TEMP } from "../actions/posts";
 
 const initialState = {
-    allPosts: [],
+    allPosts: [
+        {
+            name : 'vu',
+        }
+    ],
 };
 
 export default (state=initialState, action) => {

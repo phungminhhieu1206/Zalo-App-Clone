@@ -7,22 +7,26 @@ import useColorScheme from './hooks/useColorScheme';
 import AppNavigator from './navigation/AppNavigator';
 
 import authReducer from './store/reducers/auth';
+import postsReducer from './store/reducers/posts';
+import commentReducer from './store/reducers/comment';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-// import { ReduxThunk } from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';
 
 
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  posts: postsReducer,
+  comment: commentReducer
 });
 
 const store = createStore(
   rootReducer,
-  {},
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  // {},
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 
-  // applyMiddleware(ReduxThunk)
+  applyMiddleware(ReduxThunk)
   // composeWithDevTools()
 );
 

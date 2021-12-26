@@ -1,5 +1,6 @@
 import ENV from '../env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SET_POSTS } from '../store/actions/posts';
 
 export const createPost = async function (described, images) {
 
@@ -80,30 +81,38 @@ export const editPost = async function (described, images, id) {
 
 };
 
-export const fetchPosts = async (userId) => {
+export const fetchPosts =  () => {
 
-    const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
-    console.log(token1);
-    console.log(userId);
-    const response = await fetch(`${ENV.apiUrl}/posts/list/`, 
-    {
-        method: 'GET',
-        headers: {
-            'Content-Type': "application/json",
-            Authorization: `Bearer ${token1}`
-
-        },
-        params: {
-            userId: '617e3463fe0ef04664383a6f'
+    return async (dispatch, getState) => {
+        const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
+        console.log(token1);
+        const response = await fetch(`${ENV.apiUrl}/posts/list/`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': "application/json",
+                    Authorization: `Bearer ${token1}`
+                }
+               
+            });
+        console.log("getdone")
+        const resData = await response.json();
+        const data = resData.data
+        console.log(data);
+        
+        if (resData.error) {
+            throw new Error(resData.error);
         }
-    });
-    console.log("getdone")
-    const resData = await response.json();
-    console.log(resData);
-    if(resData.error){
-        throw new Error(resData.error);
-    }
-    return resData;
+        dispatch({
+            type: SET_POSTS,
+            posts: data
+        })
+       
+   }
+
+    // console.log(userId);
+
+
 
 };
 
@@ -111,42 +120,43 @@ export const showPosts = async (id) => {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
     console.log(token1);
-    const response = await fetch(`${ENV.apiUrl}/posts/show/${id}`, 
-    {
-        method: 'GET',
-        headers: {
-            'Content-Type': "application/json",
-            Authorization: `Bearer ${token1}`
+    const response = await fetch(`${ENV.apiUrl}/posts/show/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+                Authorization: `Bearer ${token1}`
 
-        }
-    });
+            }
+        });
     console.log("getdone")
     const resData = await response.json();
     console.log(resData);
-    if(resData.error){
+    if (resData.error) {
         throw new Error(resData.error);
     }
     return resData;
 
 };
 
+
 export const deletePosts = async (id) => {
 
     const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
     console.log(token1);
-    const response = await fetch(`${ENV.apiUrl}/posts/delete/${id}`, 
-    {
-        method: 'GET',
-        headers: {
-            'Content-Type': "application/json",
-            Authorization: `Bearer ${token1}`
+    const response = await fetch(`${ENV.apiUrl}/posts/delete/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+                Authorization: `Bearer ${token1}`
 
-        }
-    });
+            }
+        });
     console.log("getdone")
     const resData = await response.json();
     console.log(resData);
-    if(resData.error){
+    if (resData.error) {
         throw new Error(resData.error);
     }
     return resData;

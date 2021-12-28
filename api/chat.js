@@ -1,7 +1,7 @@
 import ENV from '../env';
 import * as authActions from './auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SET_CHAT_LIST } from '../store/actions/chat';
+import { SET_CHAT_LIST, SET_CHATS } from '../store/actions/chat';
 
 export const send = async function (receivedId, content, type) {
 
@@ -32,29 +32,43 @@ export const send = async function (receivedId, content, type) {
     return resData;
 };
 
-export const getMessages = async function (chatId) {
+export const getMessages = (chatId) => {
+    return async (dispatch, getState) => {
+        const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
 
-    const token1 = JSON.parse(await AsyncStorage.getItem('token')).token;
+        // console.log(JSON.stringify(data))
+        const response = await fetch(`${ENV.apiUrl}/chats/getMessages/${chatId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+                Authorization: `Bearer ${token1}`
 
-    // console.log(JSON.stringify(data))
-    const response = await fetch(`${ENV.apiUrl}/chats/getMessages/${chatId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': "application/json",
-            Authorization: `Bearer ${token1}`
+            },
+            // body: JSON.stringify(data)
+        });
+        console.log("created")
 
-        },
-        // body: JSON.stringify(data)
-    });
-    console.log("created")
+        const resData = await response.json();
+        let data = resData.data.map((item) => {
 
-    const resData = await response.json();
-    // console.log(resData)
-    console.log("doneapi")
-    if (resData.error) {
-        throw new Error(resData.error);
+            let test = {}
+
+            test["id"] = item.user._id;
+            test["content"] = item.content;
+            test["createdAt"] = item.createdAt;
+            return test;
+        });
+
+        console.log("doneapi")
+        if (resData.error) {
+            throw new Error(resData.error);
+        }
+        dispatch({
+            type: SET_CHATS,
+            chats: data
+        });
+        return  data;
     }
-    return resData;
 };
 
 export const fetchChatList = () => {
@@ -76,39 +90,18 @@ export const fetchChatList = () => {
         const res = await response.json();
 
         const resData = res.userIdList;
-        console.log(resData);
-        const dataUserList =  resData.map( (item, key) => {
-            const test = {};
-            const result=[]
-            try {
-                 result = authActions.show(item.userId);
-            }
-            catch (err) {
-                console.log(err);
-            }
-            
-            // result.then(ress => {
 
-            // test["userData"] = result;
-            test["idChat"] = item.id;
-            test["userId"] = item.userId;
-            test["time"] = item.time;
 
-            // })
-        //    console.log(item.id)
-           return test;
-
-        })
-        console.log(dataUserList)
+        // console.log(res)
         console.log("doneapi")
-        if (resData.error) {
-            throw new Error(resData.error);
+        if (res.error) {
+            throw new Error(res.error);
         }
 
-        // dispatch({
-        //     type: SET_CHAT_LIST,
-        //     chatList: dataUserList
-        // });
-        return dataUserList;
+        dispatch({
+            type: SET_CHAT_LIST,
+            chatList: res.userIdList
+        });
+        return resData;
     }
 };

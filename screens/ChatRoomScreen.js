@@ -16,51 +16,43 @@ import * as ChatActions from '../api/chat';
 export default function ChatRoomScreen() {
 
     const route = useRoute();
-    let messageContent = null;
+
     const id_room = route.params?.id;
-    {
-        if (id_room) {
-            ChatData.map((item) => {
-                if (item.id === id_room) {
-                    messageContent = item.messages;
-                }
-            })
-        }
-    }
 
     const dispatch = useDispatch();
-   
-    const [mess, setMess] =  useState("");
+    const allChats = useSelector(state => state.chat.allChats);
 
+    const [mess, setMess] =  useState(allChats);
+   
     const loadMess = useCallback (async () => {
-        // setError(null);
+       
         try {
             console.log("start get");
-            const res = await ChatActions.getMessages();
+            const res = await dispatch(ChatActions.getMessages(id_room));
             setMess(res);
-            console.log("res");
 
         } catch (err) {
             setError(err.message);
         }
     }
-    , []
-    )
+    , [dispatch])
 
     useEffect(() => {
         loadMess();
-
-        // console.log(posts);
-    }, [loadMess])
+        
+    }, [loadMess, dispatch])
+    
+    console.log(mess);
+   
 
     return (
         <SafeAreaView style={styles.page} >
-            <FlatList
-                // data={messageContent}
-                data={mess}
-                renderItem={({ item }) => <Message messages={item} />}
-                inverted
-            />
+               
+                <FlatList
+                    data={mess}
+                    renderItem={({item}) => <Message messages={item} />}
+                    showsVerticalScrollIndicator={true}
+                />
             <MessageInput />
         </SafeAreaView >
     );

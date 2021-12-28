@@ -19,11 +19,11 @@ export default function ChatRoomItem({ chatRoom }) {
     const onPressHandle = () => {
         // console.warn('pressed on: ', user.name);
         
-        navigation.navigate('ChatRoom', { id: chatRoom.idChat });
+        navigation.navigate('ChatRoom', { id: chatRoom.id });
         // console.warn(chatRoom.id);
     }
 
-    const time = moment(chatRoom.lastMessage?.createdAt).from(moment());
+    const time = moment(chatRoom.time).from(moment());
     const avata = 'https://reactnative.dev/img/tiny_logo.png';
     return (
         <Pressable onPress={onPressHandle} style={styles.container}>
@@ -38,10 +38,10 @@ export default function ChatRoomItem({ chatRoom }) {
             </View>
             <View style={styles.rightContainer}>
                 <View style={styles.row}>
-                    <Text numberOfLines={1} style={styles.name}>{chatRoom.dataUser.username}</Text>
-                    <Text numberOfLines={1} style={styles.time}>{chatRoom.time}</Text>
+                    <Text numberOfLines={1} style={styles.name}>{chatRoom.username}</Text>
+                    <Text numberOfLines={1} style={styles.time}>{time}</Text>
                 </View>
-                {/* <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastMessage.content}</Text> */}
+                <Text numberOfLines={1} style={[styles.message, { color: chatRoom.newMessages ? '#3777f0' : 'gray' }]}>{chatRoom.lastcontent}</Text>
             </View>
         </Pressable >
     );

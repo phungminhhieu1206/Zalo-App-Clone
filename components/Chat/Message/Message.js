@@ -1,16 +1,17 @@
-import React from 'react'
+import * as React from 'react';
 import { 
     StyleSheet, 
     Text, 
     View 
 } from 'react-native'
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
-// const myID = 'u1';
 
 export default function Message({ messages }) {
 
-    const myID = JSON.parse (AsyncStorage.getItem('user')).user;
-    const isMe = messages.user._id === myID;
+    const myID = JSON.parse(AsyncStorage.getItem('user')).user;
+    console.log(myID);
+    const isMe = messages.id === myID;
 
     return (
         <View style={[styles.container, isMe ? styles.rightContainer : styles.leftContainer]}>
